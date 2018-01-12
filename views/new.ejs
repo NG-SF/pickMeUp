@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+
+<div class="ui main text container segment">
+  <h1 class="ui huge header">Add new joke</h1>
+  <form class="ui form" action="/jokes" method="POST">
+    <div class="field">
+      <label for="title">Title</label>
+      <input type="text" name="title" placeholder="title" id="title">
+    </div>
+    <div class="field">
+      <label for="image">Image</label>
+      <input type="text" name="image" placeholder="image url" id="image">
+    </div>
+    <div class="field">
+      <label for="content">Content</label>
+      <textarea name="content" placeholder="add your joke here" id="content"></textarea>
+    </div>
+    <button class="ui purple basic big button" type="submit">Submit</button>
+  </form>
+</div>
+
+
+<% include ./partials/footer %>

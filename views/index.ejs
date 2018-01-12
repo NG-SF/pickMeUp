@@ -1,0 +1,28 @@
+<% include ./partials/header %>
+<div class="ui main text container">
+  <h1 class="ui huge centered header">Add jokes you like</h1>
+  <div class="ui top attached segment">
+    <div class="ui divided items">
+    <% jokes.forEach(function(joke) { %>
+      <section class="item" role="region">
+        <div class="content">
+        <div class="image">
+          <img class="ui centered rounded os medium image" src="<%= joke.image %>" alt="joke image">
+        </div>
+          <a  class="header" href="/jokes/<%= joke._id %>"><%=joke.title%></a>
+            <div class="meta">
+              <span><%= joke.publishDate %></span>
+            </div>
+            <div class="description">
+              <p><%- joke.content %>...</p>
+            </div>
+            <div class="extra">
+              <a class="ui centered floated basic violet button" href="/jokes/<%= joke._id %>">Read More </a>
+            </div>
+        </div>
+      </section>
+    <% }); %>
+    </div>
+  </div>
+</div>
+<% include ./partials/footer %>

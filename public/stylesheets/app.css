@@ -1,0 +1,25 @@
+body {
+  margin-top: 5%;
+  background-color: aliceblue;
+}
+
+.container.main {
+  margin-top: 5%;
+}
+
+nav a,
+nav .header {
+  font-size: 1.3rem;
+}
+
+i.icon {
+  font-size: 2em;
+}
+
+#btn-delete {
+  display: inline;
+}
+
+p {
+  padding-bottom: 20px;
+}

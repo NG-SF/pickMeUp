@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+  <h1 class="ui huge header"><%= joke.title %></h1>
+  <div class="ui top attached">
+    <div class="item">
+      <div class="content">
+        <img class="ui centered rounded os large image" src="<%= joke.image %>" alt="joke image">
+        <span><%= joke.publishDate %></span>
+      </div>
+      <section class="description">
+        <p><%- joke.content %></p>
+      </section>
+      <a class="ui blue basic big button" role="button" href="/jokes/<%= joke._id %>/edit">Edit</a>
+      <form id="btn-delete" action="/jokes/<%= joke._id %>?_method=DELETE" method="POST">
+        <button class="ui black basic big button">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<% include ./partials/footer %>
