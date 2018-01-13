@@ -1,6 +1,27 @@
 <% include ./partials/header %>
-<div class="ui doubling stackable grid container">
-  <h1 class="ui huge header">Add jokes that make you smile</h1>
+<div class="ui grid container">
+  <section class="ui top attached segment centered">
+
+      <h1 class="ui huge brown header">Make the collection of jokes that make you smile</h1>
+
+    <div class="ui raised segment">
+      <p class="text">There are many jokes in the world, some are smart, some can make you laugh very hard, and some jokes are not funny at all. </p>
+      <p class="text">I like to laugh. Who doesn't? There are many studies that show the benefitial effects of humor on dealing with stress, increasing resilience, helping in coping with adversity. </p>
+
+      <div class="ui segment">
+        <h2 class="ui large header">Articles on humor:</h2>
+        <ul class="ui list">
+          <li class="item text"><a href="https://www.ncbi.nlm.nih.gov/pubmed/19653782" target="_blank text">Finding comfort in a joke: consolatory effects of humor through cognitive distraction.</a></li>
+          <li class="item text"><a href="https://www.ncbi.nlm.nih.gov/pubmed/26379608" target="_blank">That's not funny! - But it should be: effects of humorous emotion regulation on emotional experience and memory.</a></li>
+          <li class="item text"> <a href="https://hbr.org/2014/05/leading-with-humor">
+          Harvard Business Review: Leading with Humor</a> </li>
+        </ul>
+      </div>
+
+    </div>
+ </div>
+ </section>
+ <div class="ui doubling stackable grid container">
   <div class="ui top attached segment">
     <div class="ui two stackable cards">
     <% jokes.forEach(function(joke) { %>
@@ -28,4 +49,5 @@
     </div>
   </div>
 </div>
+
 <% include ./partials/footer %>

@@ -1,7 +1,7 @@
 {
-  "name": "funKeeper",
+  "name": "PickMeUp",
   "version": "1.0.0",
-  "description": "simple app for storing your favorite jokes",
+  "description": "app for creating collection of your favorite jokes",
   "main": "server.js",
   "scripts": {
     "test": "mocha"
