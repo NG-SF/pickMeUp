@@ -1,11 +1,10 @@
 body {
-  margin-top: 5%;
   background-color: aliceblue;
 }
 
-.container.main {
+/* .container.main {
   margin-top: 5%;
-}
+} */
 
 nav a,
 nav .header {
@@ -22,4 +21,23 @@ i.icon {
 
 p {
   padding-bottom: 20px;
+}
+
+.joke-content {
+  font-size: 1.3rem;
+}
+
+.ui.card > .image > img,
+.ui.cards > .card > .image > img {
+  height: 50%;
+  width: auto;
+}
+
+.btns {
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  width: 100%;
 }

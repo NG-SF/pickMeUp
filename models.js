@@ -6,8 +6,8 @@ mongoose.Promise = global.Promise;
 
 // represents schema for blog posts
 const jokeSchema = mongoose.Schema({
-  title: String,
-  content: { type: String, required: true },
+  title: { type: String, required: true },
+  content: String,
   image: String,
   author: {
     firstName: String,

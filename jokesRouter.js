@@ -17,31 +17,34 @@ router.use(express.static('public'));
 router.use(methodOverride('_method'));
 router.use(bodyParser.json());
 
+// generic error message
+let error = 'Sorry. Something went wrong on the dark side.';
+
 // INDEX Route
 router.get('/', function(req, res) {
-  Joke.find({}, function(err, jokes) {
-    if (err) {
-      console.log('Error!');
-    } else {
+  Joke.find()
+    .then(jokes => {
       res.render('index', { jokes: jokes });
-    }
-  });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).render({ error: error });
+    });
 });
-//NEW Route
+
+// NEW Route redirects to form to enter new joke
 router.get('/new', function(req, res) {
   res.render('new');
 });
 
 // CREATE Route
-router.post('/', function(req, res) {
-  console.log('this is title', req.body.title);
-  console.log('this is content', req.body.content);
+router.post('/', (req, res) => {
   let newJoke = {
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image
+    image: req.body.image || 'http://www.baltana.com/files/wallpapers-3/Simple-Life-Quotes-Wallpaper-10876.jpg'
   };
-  // req.body.joke.body = req.sanitize(req.body.joke.body);
+  req.body = req.sanitize(req.body);
   Joke.create(newJoke, function(err, newJoke) {
     if (err) {
       console.log('Error from Joke.create', err);
@@ -52,42 +55,52 @@ router.post('/', function(req, res) {
   });
 });
 
-//SHOW Route
-router.get('/:id', function(req, res) {
-  Joke.findById(req.params.id, function(err, foundJoke) {
-    if (err) {
-      console.log('Error from Blog.create');
-      res.redirect('/jokes');
-    } else {
-      res.render('show', { joke: foundJoke });
-    }
-  });
+// //SHOW Route
+// router.get('/:id', function(req, res) {
+//   Joke.findById(req.params.id, function(err, foundJoke) {
+//     if (err) {
+//       console.log('Error from Blog.create');
+//       res.redirect('/jokes');
+//     } else {
+//       res.render('show', { joke: foundJoke });
+//     }
+//   });
+// });
+
+// EDIT Route redirects to edit joke page
+router.get('/:id/edit', (req, res) => {
+  Joke.findById(req.params.id)
+    .then(joke => res.render('edit', { joke: joke }))
+    .catch(err => {
+      console.log(err);
+      res.status(500).render({ error: error });
+    });
 });
 
-// // EDIT Route
-// router.get('/:id/edit', function(req, res) {
-//   Blog.findById(req.params.id, function(err, foundBlog) {
-//     if (err) {
-//       console.log('Error from edit route');
-//       res.redirect('/blogs');
-//     } else {
-//       res.render('edit', { blog: foundBlog });
-//     }
-//   });
-// });
-//
-// // UPDATE Route
-// router.put('/:id', function(req, res) {
-//   req.body.blog.body = req.sanitize(req.body.blog.body);
-//   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
-//     if (err) {
-//       res.redirect('/blogs');
-//     } else {
-//       res.redirect('/blogs/' + req.params.id);
-//     }
-//   });
-// });
-//
+// UPDATE Route
+router.put('/:id', function(req, res) {
+  req.body = req.sanitize(req.body);
+
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    const message = `Request path id (${req.params.id}) and request body id ` + `(${req.body.id}) must match`;
+    console.error(message);
+    return res.status(400).render({ error: message });
+  }
+
+  const toUpdate = {};
+  const updatableFields = ['title', 'content', 'image'];
+
+  updatableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+
+  Joke.findByIdAndUpdate(req.params.id, { $set: toUpdate })
+    .then(joke => res.status(204).render('index', { joke: joke }))
+    .catch(err => res.status(500).render({ error: error }));
+});
+
 // DELETE Route
 router.delete('/:id', function(req, res) {
   Joke.findByIdAndRemove(req.params.id, function(err) {
