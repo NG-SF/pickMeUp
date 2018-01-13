@@ -30,12 +30,16 @@ i.icon {
 
 .ui.card > .image > img,
 .ui.cards > .card > .image > img {
-  height: 50%;
+  height: 40%;
   width: auto;
 }
 
 .btns {
   text-align: center;
+}
+
+.login {
+  margin-top: 5%;
 }
 
 .foot {

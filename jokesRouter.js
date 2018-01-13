@@ -32,8 +32,13 @@ router.get('/', function(req, res) {
     });
 });
 
+// LogIn Route redirects to login page
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
 // NEW Route redirects to form to enter new joke
-router.get('/new', function(req, res) {
+router.get('/new', (req, res) => {
   res.render('new');
 });
 
@@ -42,7 +47,7 @@ router.post('/', (req, res) => {
   let newJoke = {
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image || 'http://www.baltana.com/files/wallpapers-3/Simple-Life-Quotes-Wallpaper-10876.jpg'
+    image: req.body.image || '/images/default-img.jpeg'
   };
   req.body = req.sanitize(req.body);
   Joke.create(newJoke, function(err, newJoke) {
@@ -78,15 +83,14 @@ router.get('/:id/edit', (req, res) => {
 });
 
 // UPDATE Route
-router.put('/:id', function(req, res) {
+router.put('/:id', (req, res) => {
   req.body = req.sanitize(req.body);
 
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = `Request path id (${req.params.id}) and request body id ` + `(${req.body.id}) must match`;
-    console.error(message);
-    return res.status(400).render({ error: message });
-  }
-
+  // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+  //   const message = `Request path id (${req.params.id}) and request body id ` + `(${req.body.id}) must match`;
+  //   console.error(message);
+  //   return res.status(400).render({ error: message });
+  // }
   const toUpdate = {};
   const updatableFields = ['title', 'content', 'image'];
 
@@ -97,12 +101,15 @@ router.put('/:id', function(req, res) {
   });
 
   Joke.findByIdAndUpdate(req.params.id, { $set: toUpdate })
-    .then(joke => res.status(204).render('index', { joke: joke }))
+    .then(joke => {
+      res.status(204);
+      res.render('index', { joke: joke });
+    })
     .catch(err => res.status(500).render({ error: error }));
 });
 
 // DELETE Route
-router.delete('/:id', function(req, res) {
+router.delete('/:id', (req, res) => {
   Joke.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       console.log('Error from delete route');

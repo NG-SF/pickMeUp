@@ -6,7 +6,8 @@
 
     <div class="ui raised segment">
       <p class="text">There are many jokes in the world, some are smart, some can make you laugh very hard, and some jokes are not funny at all. </p>
-      <p class="text">I like to laugh. Who doesn't? There are many studies that show the benefitial effects of humor on dealing with stress, increasing resilience, helping in coping with adversity. </p>
+      <p class="text">There are many studies that show the benefitial effects of humor on dealing with stress, increasing resilience, helping in coping with adversity. </p>
+      <p class="text">Sign up to start collection of jokes that you like</p>
 
       <div class="ui segment">
         <h2 class="ui large header">Articles on humor:</h2>
@@ -38,7 +39,7 @@
               <p class="joke-content"><%- joke.content %></p>
             </div>
             <div class="extra content btns">
-              <a class="ui teal basic big button" role="button" href="/jokes/<%= joke._id %>/edit">Edit</a>
+              <a class="ui orange basic big button" role="button" href="/jokes/<%= joke._id %>/edit">Edit</a>
               <form id="btn-delete" action="/jokes/<%= joke._id %>?_method=DELETE" method="POST">
                 <button class="ui black basic big button">Delete</button>
               </form>
