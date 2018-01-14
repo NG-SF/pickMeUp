@@ -1,6 +1,8 @@
+
 body {
-  background-color: aliceblue;
+  background:linear-gradient(to right, rgba(242, 155, 6, 0.406), rgba(196, 42, 220, 0.276));
   padding-bottom: 55px;
+  box-sizing: border-box;
 }
 
 main {
@@ -28,9 +30,13 @@ i.icon {
   font-size: 1.3rem;
 }
 
+blockquote {
+  font-size: 1.1rem;
+}
+
 .ui.card > .image > img,
 .ui.cards > .card > .image > img {
-  height: 40%;
+  height: 30%;
   width: auto;
 }
 
