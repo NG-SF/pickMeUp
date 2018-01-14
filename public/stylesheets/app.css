@@ -3,10 +3,13 @@ body {
   background:linear-gradient(to right, rgba(242, 155, 6, 0.406), rgba(196, 42, 220, 0.276));
   padding-bottom: 55px;
   box-sizing: border-box;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
-  height: 100%;
+  flex: 1;
 }
 
 nav a,

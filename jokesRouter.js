@@ -85,7 +85,7 @@ router.get('/:id/edit', (req, res) => {
 
 // UPDATE Route
 router.put('/:id', (req, res) => {
-  req.body = req.sanitize(req.body);
+  // req.body = req.sanitize(req.body);
 
   // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
   //   const message = `Request path id (${req.params.id}) and request body id ` + `(${req.body.id}) must match`;
@@ -94,6 +94,7 @@ router.put('/:id', (req, res) => {
   // }
   const toUpdate = {};
   const updatableFields = ['title', 'content', 'image'];
+  console.log(req.body);
 
   updatableFields.forEach(field => {
     if (field in req.body) {
@@ -104,14 +105,14 @@ router.put('/:id', (req, res) => {
   Joke.findByIdAndUpdate(req.params.id, { $set: toUpdate })
     .then(joke => {
       res.status(204);
-      res.render('index', { joke: joke });
+      res.redirect('/jokes');
     })
     .catch(err => res.status(500).render({ error: error }));
 });
 
 // DELETE Route
 router.delete('/:id', (req, res) => {
-  Joke.findByIdAndRemove(req.params.id, function(err) {
+  Joke.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       console.log('Error from delete route');
       res.redirect('/jokes');
