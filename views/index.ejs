@@ -34,19 +34,22 @@
           The Benefits of Laughter: Why laughter may be the best way to warm up a relationship</a> </li>
         </ul>
       </div>
-
     </div>
  </div>
  </section>
+
  <div class="ui doubling stackable grid container">
   <div class="ui top attached segment">
     <div class="ui two stackable cards">
+
     <% jokes.forEach(function(joke) { %>
       <section class="ui padded purple card" role="region">
-        <div class="image small">
-          <img class="ui centered rounded os small image" src="<%= joke.image %>" alt="joke image">
-        </div>
-        <div class="content">
+
+          <div class="image small">
+            <img class="ui centered rounded os small image" src="<%= joke.image %>" alt="joke image">
+          </div>
+        
+          <div class="content">
           <h2 class="header">Title: <%=joke.title%></h2>
             <div class="meta">
               <span class="date"><%= joke.publishDate %></span>
@@ -63,6 +66,7 @@
         </div>
       </section>
     <% }); %>
+
     </div>
   </div>
 </div>

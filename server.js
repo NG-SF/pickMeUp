@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express'),
   mongoose = require('mongoose'),
   morgan = require('morgan'),
+  passport = require('passport'),
   jokesRouter = require('./jokesRouter'),
   { PORT, DATABASE_URL } = require('./config'),
   app = express();

@@ -47,7 +47,8 @@ router.post('/', (req, res) => {
   let newJoke = {
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image || '/images/default-img.jpeg'
+    // image: req.body.image || '/images/default-img.jpeg'
+    image: req.body.image
   };
   req.body = req.sanitize(req.body);
   Joke.create(newJoke, function(err, newJoke) {

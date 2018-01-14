@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const moment = require('moment');
+const mongoose = require('mongoose'),
+      bcrypt = require('bcryptjs'),
+      moment = require('moment');
 
 mongoose.Promise = global.Promise;
 
