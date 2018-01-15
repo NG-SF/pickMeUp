@@ -5,16 +5,38 @@ const express = require('express'),
   passport = require('passport'),
   jokesRouter = require('./jokesRouter'),
   { PORT, DATABASE_URL } = require('./config'),
+  { router: usersRouter } = require('./users'),
+  { router: authRouter, localStrategy, jwtStrategy } = require('./auth'),
   app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(morgan('common'));
 
-// when requests come into `/jokes`
-// we'll route them to the express
-// router instances we've imported.
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 app.use('/jokes', jokesRouter);
+app.use('/users/', usersRouter);
+app.use('/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+app.use('*', (req, res) => {
+  let message = 'Not Found';
+  return res.status(404).render('errorMessage', { error: error });
+});
 
 let server;
 

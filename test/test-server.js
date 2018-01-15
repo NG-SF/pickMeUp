@@ -117,14 +117,13 @@ it('should find a joke by specific ID', function() {
   });
 
   it('should return jokes with right fields', function() {
- // Strategy: Get back all blog jokes, and ensure they have expected keys
-    let resPost;
+ // Strategy: Get back all jokes, and ensure they have expected keys
+    let resJoke;
 
       return chai.request(app)
         .get('/jokes')
         .then(function(res) {
           expect(res).to.have.status(200);
-          expect(res).to.be.json;
           expect(res.body.jokes).to.be.a('array');
           expect(res.body.jokes).to.have.lengthOf.at.least(1);
 
@@ -133,7 +132,7 @@ it('should find a joke by specific ID', function() {
             expect(post).to.include.keys(
               'id', 'title', 'content', 'author', 'created');
           });
-          resPost = res.body.jokes[0];
+          resJoke = res.body.jokes[0];
           return BlogPost.findById(resPost.id);
         })
         .then(function(post) {

@@ -7,7 +7,7 @@
 
       <form class="ui big form" action="/jokes" method="POST">
         <div class="ui stacked segment">
-        <h2 class="ui orange header">Sign Up</h2>
+        <h2 class="ui teal header">Sign Up</h2>
 
         <div class="field">
             <div class="ui left icon input">
@@ -25,22 +25,33 @@
             </div>
           </div>
 
+        <div class="ui error">
          <div class="required field">
-            <div class="ui left icon input">
-              
+            <div class="ui left icon input">   
               <label for="userName">Username: </label>
               <i class="paw icon"></i>
               <input type="text" name="userName" placeholder=" User name (make it unique)" required id="userName">
             </div>
           </div>
+            <section class="ui error message">
+            <h2 class="header">Validation Error</h2>
+          <p>Username is required and has to be unique.</p>
+          </section>
+        </div>
 
+      <div class="ui error">
           <div class="required field">
             <div class="ui left icon input">    
               <label for="password">Password: </label>
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password" required id="password">
+              <input type="password" name="password" placeholder="Password (min 10 characters)" required id="password">
             </div>
           </div>
+        <section class="ui error message">
+        <h2 class="header">Validation Error</h2>
+          <p>Password is required and should be minimum 10 characters long.</p>
+        </section>
+      </div>
 
           <button class="ui large purple submit button" type="submit">Submit</button>
         </div>

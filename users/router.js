@@ -4,18 +4,15 @@ const express = require('express'),
       router = express.Router(),
       jsonParser = bodyParser.json();
 
+router.use(bodyParser.urlencoded({ extended: true }));
+
 // Post to register a new user
-router.post('/', jsonParser, (req, res) => {
+router.post('/',(req, res) => {
   // check if username and password is defined
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
-      return res.status(422).json({
-        code: 422,
-        reason: 'ValidationError',
-        message: 'Missing field',
-        location: missingField
-    });
+      return res.status(422);
   }
 //check that all the fields are strings
   const stringFields = ['username', 'password', 'firstName', 'lastName'];
@@ -24,12 +21,8 @@ router.post('/', jsonParser, (req, res) => {
   );
 
   if (nonStringField) {
-    return res.status(422).json({
-      code: 422,
-      reason: 'ValidationError',
-      message: 'Incorrect field type: expected string',
-      location: nonStringField
-    });
+    let error = 'Incorrect field type: expected string';
+    return res.status(422).render('errorMessage', { error: error });
   }
   // If the username and password aren't trimmed we give an error.  Users might
   // expect that these will work without trimming (i.e. they want the password
@@ -44,12 +37,8 @@ router.post('/', jsonParser, (req, res) => {
   );
 
   if (nonTrimmedField) {
-    return res.status(422).json({
-      code: 422,
-      reason: 'ValidationError',
-      message: 'Cannot start or end with whitespace',
-      location: nonTrimmedField
-    });
+    let error = 'Cannot start or end with whitespace';
+    return res.status(422).render('errorMessage', { error: error });
   }
 // check that username and password are the correct length
   const sizedFields = {
@@ -75,12 +64,9 @@ router.post('/', jsonParser, (req, res) => {
   );
 
   if (tooSmallField || tooLargeField) {
-    return res.status(422).json({
-      code: 422,
-      reason: 'ValidationError',
-      message: tooSmallField ? `Must be at least ${sizedFields[tooSmallField].min} characters long` : `Must be at most ${sizedFields[tooLargeField].max} characters long`,
-      location: tooSmallField || tooLargeField
-    });
+   let error = "Password should be between 10 and 72 characters.";
+   
+    return res.status(422).render('errorMessage', { error: error });
   }
 
   let {username, password, firstName = '', lastName = ''} = req.body;

@@ -5,8 +5,13 @@
   <div class="ui top attached segment">
   
   <div class="ui raised sentered segment">
-    <h1 class="ui huge orange header">Hello ... here is your favorite jokes</h1>
+    <h1 class="ui huge orange header">Hello <%= user.username> here is your favorite jokes</h1>
         <p class="text">Time to smile :)</p>
+      
+      <form action="/jokes/new" method="GET">
+          <button class="ui purple basic big button">Add a new joke</button>
+      </form>
+     
   </div>
 
     <div class="ui two stackable cards">

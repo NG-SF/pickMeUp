@@ -1,6 +1,5 @@
 
 body {
-  background: ivory;
   padding-bottom: 55px;
   box-sizing: border-box;
   display: flex;
@@ -72,5 +71,6 @@ blockquote {
 .ui.footer.segment {
   text-align: center;
   width: 100%;
-  height: 65px;
+  height: 85px;
+  background: rgba(222, 127, 11, 0.543);
 }

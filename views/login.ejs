@@ -9,6 +9,7 @@
         
       <h2 class="ui orange header">Log-in to your account</h2>
 
+        <div class="ui error">
           <div class="required field">
             <div class="ui left icon input">
               <label for="userName">Username:</label>
@@ -16,13 +17,24 @@
               <i class="paw icon"></i>
             </div>
           </div>
+          <section class="ui error message">
+            <h2 class="header">Validation Error</h2>
+          <p>Username is required</p>
+          </section>
+        </div>
 
+        <div class="ui error">
           <div class="required field">
             <div class="ui left icon input">
               <label for="password">Password:</label>
               <input type="password" name="password" placeholder="Password" required id="password">
               <i class="lock icon"></i>
             </div>
+            <section class="ui error message">
+            <h2 class="header">Validation Error</h2>
+          <p>Password is required</p>
+          </section>
+        </div>
 
           <button class="ui large purple submit button" type="submit">Submit</button>
         </div>

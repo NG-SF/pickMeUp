@@ -28,7 +28,7 @@ router.get('/', function(req, res) {
     })
     .catch(err => {
       console.error(err);
-      res.status(500).render({ error: error });
+      res.status(500).render('errorMessage', { error: error });
     });
 });
 
@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
       console.log('Error from Joke.create', err);
       res.render('new');
     } else {
-      res.redirect('/jokes');
+      res.redirect('/jokes/user');
     }
   });
 });
@@ -74,7 +74,7 @@ router.get('/user', (req, res) => {
     })
     .catch(err => {
       console.error(err);
-      res.status(500).render({ error: error });
+      res.status(500).render('errorMessage', { error: error });
     });
 });
 
@@ -84,7 +84,7 @@ router.get('/:id/edit', (req, res) => {
     .then(joke => res.render('edit', { joke: joke }))
     .catch(err => {
       console.log(err);
-      res.status(500).render({ error: error });
+      res.status(500).render('errorMessage', { error: error });
     });
 });
 
@@ -107,7 +107,7 @@ router.put('/:id', (req, res) => {
       res.status(204);
       res.redirect('/jokes');
     })
-    .catch(err => res.status(500).render({ error: error }));
+    .catch(err => res.status(500).render('errorMessage', { error: error }));
 });
 
 // DELETE Route
