@@ -1,22 +1,43 @@
+
 <% include ./partials/header %>
-<div class="ui main text container segment">
-  <h1 class="ui huge header">Title: <%= joke.title %></h1>
-  <div class="ui top attached">
-    <div class="item">
-      <div class="content">
-        <img class="ui centered rounded os large image" src="<%= joke.image %>" alt="joke image">
-        <span><%= joke.publishDate %></span>
-      </div>
-      <section class="description">
-        <p><%- joke.content %></p>
+
+ <div class="ui doubling stackable grid container">
+  <div class="ui top attached segment">
+  
+  <div class="ui raised sentered segment">
+    <h1 class="ui huge orange header">Hello ... here is your favorite jokes</h1>
+        <p class="text">Time to smile :)</p>
+  </div>
+
+    <div class="ui two stackable cards">
+
+    <% jokes.forEach(function(joke) { %>
+      <section class="ui padded purple card" role="region">
+
+          <div class="image small">
+            <img class="ui centered rounded os small image" src="<%= joke.image %>" alt="joke image">
+          </div>
+        
+          <div class="content">
+          <h2 class="header">Title: <%=joke.title%></h2>
+            <div class="meta">
+              <span class="date"><%= joke.publishDate %></span>
+            </div>
+            <div class="description">
+              <p class="joke-content"><%- joke.content %></p>
+            </div>
+            <div class="extra content btns">
+              <a class="ui orange basic big button" role="button" href="/jokes/<%= joke._id %>/edit">Edit</a>
+              <form id="btn-delete" action="/jokes/<%= joke._id %>?_method=DELETE" method="POST">
+                <button class="ui black basic big button">Delete</button>
+              </form>
+            </div>
+        </div>
       </section>
-      <a class="ui blue basic big button" role="button" href="/jokes/<%= joke._id %>/edit">Edit</a>
-      <form id="btn-delete" action="/jokes/<%= joke._id %>?_method=DELETE" method="POST">
-        <button class="ui black basic big button">Delete</button>
-      </form>
+    <% }); %>
+
     </div>
   </div>
 </div>
-
 
 <% include ./partials/footer %>

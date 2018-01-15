@@ -37,6 +37,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// LogIn Route redirects to login page
+router.get('/signUP', (req, res) => {
+  res.render('signUP');
+});
+
 // NEW Route redirects to form to enter new joke
 router.get('/new', (req, res) => {
   res.render('new');
@@ -61,17 +66,17 @@ router.post('/', (req, res) => {
   });
 });
 
-// //SHOW Route
-// router.get('/:id', function(req, res) {
-//   Joke.findById(req.params.id, function(err, foundJoke) {
-//     if (err) {
-//       console.log('Error from Blog.create');
-//       res.redirect('/jokes');
-//     } else {
-//       res.render('show', { joke: foundJoke });
-//     }
-//   });
-// });
+//SHOW Route
+router.get('/user', (req, res) => {
+  Joke.find()
+    .then(jokes => {
+      res.render('show', { jokes: jokes });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).render({ error: error });
+    });
+});
 
 // EDIT Route redirects to edit joke page
 router.get('/:id/edit', (req, res) => {
@@ -87,11 +92,6 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   // req.body = req.sanitize(req.body);
 
-  // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-  //   const message = `Request path id (${req.params.id}) and request body id ` + `(${req.body.id}) must match`;
-  //   console.error(message);
-  //   return res.status(400).render({ error: message });
-  // }
   const toUpdate = {};
   const updatableFields = ['title', 'content', 'image'];
   console.log(req.body);

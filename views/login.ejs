@@ -1,39 +1,41 @@
 <% include ./partials/header %>
 
 <div class="ui container login">
-
   <div class="ui middle aligned center aligned grid">
     <div class="six wide column">
+
+      <form class="ui big form" action="/jokes" method="POST">
+      <div class="ui raised segment">
+        
       <h2 class="ui orange header">Log-in to your account</h2>
 
-      <form class="ui large form" action="/jokes" method="POST">
-        <div class="ui stacked segment">
-
           <div class="required field">
             <div class="ui left icon input">
-              <i class="mail outline icon"></i></i>
-              <input type="text" name="email" placeholder="E-mail address" required>
+              <label for="userName">Username:</label>
+              <input type="text" name="userName" placeholder="User name (make it unique)" required id="userName">
+              <i class="paw icon"></i>
             </div>
           </div>
 
           <div class="required field">
             <div class="ui left icon input">
-
-            <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password" required>
+              <label for="password">Password:</label>
+              <input type="password" name="password" placeholder="Password" required id="password">
+              <i class="lock icon"></i>
             </div>
-          </div>
 
           <button class="ui large purple submit button" type="submit">Submit</button>
+        </div>
         </div>
       </form>
 
       <div class="ui message">
         <p>"Don't have an account?"</p>
-        <a href="/jokes">Sign Up</a>
+        <a class="ui big green labeled icon button" role="button" href="/jokes">Sign Up</a> <i class="signup icon"></i>
       </div>
 
     </div><!-- end of column -->
+
 
 </div>
 </div>

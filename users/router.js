@@ -1,12 +1,8 @@
-'use strict';
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const {User} = require('./models');
-
-const router = express.Router();
-
-const jsonParser = bodyParser.json();
+const express = require('express'),
+      bodyParser = require('body-parser'),
+      {User} = require('./models'),
+      router = express.Router(),
+      jsonParser = bodyParser.json();
 
 // Post to register a new user
 router.post('/', jsonParser, (req, res) => {

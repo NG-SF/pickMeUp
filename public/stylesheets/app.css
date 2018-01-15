@@ -1,6 +1,6 @@
 
 body {
-  background:linear-gradient(to right, rgba(242, 155, 6, 0.406), rgba(196, 42, 220, 0.276));
+  background: ivory;
   padding-bottom: 55px;
   box-sizing: border-box;
   display: flex;
@@ -9,7 +9,17 @@ body {
 }
 
 main {
+  margin-top: 1%;
   flex: 1;
+}
+
+.ui.menu {
+  min-height: 4.5rem;
+}
+
+#banner {
+  padding: 130px;
+  margin-top: 4.5rem;
 }
 
 nav a,
@@ -47,21 +57,20 @@ blockquote {
   text-align: center;
 }
 
+.ui.button {
+  margin-top: 11px;
+}
+
 .login {
   margin-top: 5%;
 }
 
 .foot {
   margin-top: 3%;
-  clear: both;
-  /* position: relative;
-  bottom: 0; */
 }
 
 .ui.footer.segment {
   text-align: center;
   width: 100%;
-  height: 75px;
-  /* position: absolute;
-  bottom: 0; */
+  height: 65px;
 }

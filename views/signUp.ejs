@@ -1,0 +1,55 @@
+<% include ./partials/header %>
+
+<div class="ui container login">
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="six wide column">
+
+      <form class="ui big form" action="/jokes" method="POST">
+        <div class="ui stacked segment">
+        <h2 class="ui orange header">Sign Up</h2>
+
+        <div class="field">
+            <div class="ui left icon input">
+              <label for="firstName">First Name: </label>
+              <i class="user icon"></i>
+              <input type="text" name="firstName" placeholder="First name" id="firstName">
+            </div>
+          </div>
+
+        <div class="field">
+            <div class="ui left icon input">
+              <label for="lastName">Last Name: </label>
+              <i class="user icon"></i>
+              <input type="text" name="lastName" placeholder="Last name" id="lastName">
+            </div>
+          </div>
+
+         <div class="required field">
+            <div class="ui left icon input">
+              
+              <label for="userName">Username: </label>
+              <i class="paw icon"></i>
+              <input type="text" name="userName" placeholder=" User name (make it unique)" required id="userName">
+            </div>
+          </div>
+
+          <div class="required field">
+            <div class="ui left icon input">    
+              <label for="password">Password: </label>
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password" required id="password">
+            </div>
+          </div>
+
+          <button class="ui large purple submit button" type="submit">Submit</button>
+        </div>
+      </form>
+
+    </div><!-- end of column -->
+
+</div>
+</div>
+
+
+<% include ./partials/footer %>
