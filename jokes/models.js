@@ -8,7 +8,8 @@ const jokeSchema = mongoose.Schema({
   title: { type: String, required: true },
   content: String,
   image: String,
-  created: { type: Date, default: Date.now() }
+  created: { type: Date, default: Date.now() },
+  userId: String
 });
 
 // virtual property to return date formated with moment.js

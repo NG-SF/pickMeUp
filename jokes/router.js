@@ -6,6 +6,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   router = express.Router(),
   { Joke } = require('./models'),
+  { User } = require('../users/models'),
   app = express();
 // App config
 
@@ -38,17 +39,17 @@ router.get('/login', (req, res) => {
 });
 
 // LogIn Route redirects to login page
-router.get('/signUP', (req, res) => {
-  res.render('signUP');
+router.get('/signUp', (req, res) => {
+  res.render('signUp');
 });
 
 // NEW Route redirects to form to enter new joke
-router.get('/new', (req, res) => {
-  res.render('new');
+router.get('/users/new/:id', (req, res) => {
+  res.render('newJoke');
 });
 
 // CREATE Route
-router.post('/', (req, res) => {
+router.post('/users/:id', (req, res) => {
   let newJoke = {
     title: req.body.title,
     content: req.body.content,
@@ -56,26 +57,41 @@ router.post('/', (req, res) => {
     image: req.body.image
   };
   req.body = req.sanitize(req.body);
-  Joke.create(newJoke, function(err, newJoke) {
-    if (err) {
-      console.log('Error from Joke.create', err);
-      res.render('new');
-    } else {
-      res.redirect('/jokes/user');
-    }
-  });
+  
+  User.findById(req.params.id)
+  .then(user => {
+    Joke.create(newJoke)
+    .then(joke => {
+      console.log(joke);
+    })
+    .then(() => {
+      Joke.findById({userId: user._id})
+      .then(jokes => {
+        res.render('userPage', { jokes: jokes, user: user });
+      });
+    });
+  }).catch(err => {
+      console.error(err);
+      let error = 'There are some problems with creating new joke';
+      res.status(500).render('errorMessage', { error: error });
+    });
+
 });
 
 //SHOW Route
-router.get('/user', (req, res) => {
-  Joke.find()
+router.get('/users/:id', (req, res) => {
+  User.findById(req.params.id)
+  .then(user => {
+
+  Joke.find({userId: user._id})
     .then(jokes => {
-      res.render('show', { jokes: jokes });
-    })
-    .catch(err => {
+      res.render('userPage', { jokes: jokes, user: user });
+    });  
+  }).catch(err => {
       console.error(err);
       res.status(500).render('errorMessage', { error: error });
     });
+
 });
 
 // EDIT Route redirects to edit joke page
@@ -123,4 +139,4 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = { router };

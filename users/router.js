@@ -7,7 +7,7 @@ const express = require('express'),
 router.use(bodyParser.urlencoded({ extended: true }));
 
 // Post to register a new user
-router.post('/',(req, res) => {
+router.post('/create',(req, res) => {
   // check if username and password is defined
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -46,10 +46,10 @@ router.post('/',(req, res) => {
       min: 1
     },
     password: {
-      min: 10,
+      min: 5,
       // bcrypt truncates after 72 characters, so let's not give the illusion
       // of security by storing extra (unused) info
-      max: 72
+      max: 15
     }
   };
   const tooSmallField = Object.keys(sizedFields).find(
@@ -64,7 +64,7 @@ router.post('/',(req, res) => {
   );
 
   if (tooSmallField || tooLargeField) {
-   let error = "Password should be between 10 and 72 characters.";
+   let error = "Password should be between 5 and 15 characters.";
    
     return res.status(422).render('errorMessage', { error: error });
   }
@@ -99,7 +99,7 @@ router.post('/',(req, res) => {
       });
     })
     .then(user => {
-      return res.status(201).json(user.serialize());
+      return res.redirect('/jokes/users/' + user._id);
     })
     .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
@@ -111,14 +111,33 @@ router.post('/',(req, res) => {
     });
 });
 
-// Never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
-router.get('/', (req, res) => {
-  return User.find()
-    .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+
+
+// Post to register a new user
+router.post('/login',(req, res) => {
+  
+  let {username, password} = req.body;
+  
+
+  return User.findOne({username})
+    .then(user => {
+      if (user && user.validatePassword(password)) {
+        
+      return res.redirect('/jokes/users/' + user._id);
+      } 
+      else {
+        return res.redirect('/jokes/login');
+      }
+    })
+    .catch(err => {
+      // Forward validation errors on to the client, otherwise give a 500
+      // error because something unexpected has happened
+      if (err.reason === 'ValidationError') {
+        return res.status(err.code).json(err);
+      }
+      res.status(500).json({code: 500, message: 'Internal server error'});
+    });
 });
+
 
 module.exports = {router};

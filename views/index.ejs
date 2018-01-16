@@ -9,7 +9,7 @@
 
 <body>
  
-    <nav class="ui purple inverted fixed menu" role="navigation">
+    <nav class="ui purple inverted fixed stackable menu" role="navigation">
         <div class="ui container">
           <div class="ui header large brown inverted item"><i class="smile icon"></i>PickMeUp</div>
           <a href="/jokes" class="item">Home</a>
@@ -21,16 +21,16 @@
         </div>
     </nav>
 
-  <div class="ui inverted vertical teal masthead center aligned segment" id="banner">
+  <div class="ui inverted vertical masthead center aligned segment" id="banner">
     <div class="ui text container">
-      <h1 class="ui huge brown header">Create the collection of jokes that make you smile</h1>
+      <h1 class="ui huge purple header">Create the collection of jokes that make you smile</h1>
       <div class="ui huge orange button">Get Started <i class="right arrow icon"></i></div>
     </div>
 </div><!-- end of masthead vertical -->
 
 <div class="ui vertical stripe segment">
   <div class="ui middle aligned stackable grid container">
-    <div class="row">
+    <div class="row" id="part-1">
       <section class="eight wide column">
         <div class="ui raised segment">
         <p class="text"> <q>A sense of humor is part of the art of leadership, of getting along with people, of getting things done.</q>- Dwight D. Eisenhower</p>
@@ -44,7 +44,7 @@
       </div>
     </div><!-- end of row -->
     
-    <div class="row">
+    <div class="row" id="part-2">
       <div class="six wide left floated column">
         <img class="ui large rounded image" src="/images/autocorrect.jpg" alt="joke image">
       </div>
@@ -62,16 +62,16 @@
   </div><!-- end of grid -->
   </div><!-- end of vertical stripe -->
 
-<div class="vertical stripe segment">
-  <section class="ui text container">
+<div class="vertical stripe segment" id="part-3bg">
+  <section class="ui text container" id="part-3">
       <p class="text">There are many jokes in the world, some are smart, some can make you laugh very hard, and some jokes are not funny at all. </p>
       <p class="text">Many studies show the benefitial effects of humor on dealing with stress, increasing resilience, helping in coping with adversity. </p>
       <p class="text">Any of us would like to have some pick-me-up on a not-so-good-really-crappy-day and collection of funny jokes can be a good start.</p>
       <p class="text"> So <a href="/jokes/login">sign up</a> today to start collection of jokes that make you smile.</p>
 
-   <h2 class="ui large orange horizontal header divider">Articles on humor:</h2>
+      <div class="ui raised segment" id="part-4">
+        <h2 class="ui large orange horizontal header divider">Articles on humor:</h2>
   
-      <div class="ui raised segment">
         <ul class="ui list">
           <li class="item text"><a href="https://www.ncbi.nlm.nih.gov/pubmed/19653782" target="_blank">Finding comfort in a joke: consolatory effects of humor through cognitive distraction.</a></li>
           <li class="item text"><a href="https://www.ncbi.nlm.nih.gov/pubmed/26379608" target="_blank">That's not funny! - But it should be: effects of humorous emotion regulation on emotional experience and memory.</a></li>

@@ -17,13 +17,6 @@ const UserSchema = mongoose.Schema({
   lastName: {type: String, default: ''}
 });
 
-UserSchema.methods.serialize = function() {
-  return {
-    username: this.username || '',
-    firstName: this.firstName || '',
-    lastName: this.lastName || ''
-  };
-};
 
 UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);

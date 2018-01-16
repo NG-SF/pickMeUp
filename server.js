@@ -3,7 +3,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   morgan = require('morgan'),
   passport = require('passport'),
-  jokesRouter = require('./jokesRouter'),
+  { router: jokesRouter} = require('./jokes'),
   { PORT, DATABASE_URL } = require('./config'),
   { router: usersRouter } = require('./users'),
   { router: authRouter, localStrategy, jwtStrategy } = require('./auth'),
@@ -28,14 +28,14 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/jokes', jokesRouter);
-app.use('/users/', usersRouter);
-app.use('/auth/', authRouter);
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.use('*', (req, res) => {
   let message = 'Not Found';
-  return res.status(404).render('errorMessage', { error: error });
+  return res.status(404).render('errorMessage', { error: message });
 });
 
 let server;
