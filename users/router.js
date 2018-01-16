@@ -1,6 +1,6 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
-      {User} = require('./models'),
+      { User } = require('./models'),
       router = express.Router(),
       jsonParser = bodyParser.json();
 

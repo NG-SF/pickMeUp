@@ -21,16 +21,9 @@ router.use(bodyParser.json());
 // generic error message
 let error = 'Sorry. Something went wrong on the dark side.';
 
-// INDEX Route
+// Homepage Route
 router.get('/', function(req, res) {
-  Joke.find()
-    .then(jokes => {
-      res.render('index', { jokes: jokes });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).render('errorMessage', { error: error });
-    });
+  res.render('index');
 });
 
 // LogIn Route redirects to login page
@@ -45,7 +38,7 @@ router.get('/signUp', (req, res) => {
 
 // NEW Route redirects to form to enter new joke
 router.get('/users/new/:id', (req, res) => {
-  res.render('newJoke');
+  res.render('newJoke', {id: req.params.id});
 });
 
 // CREATE Route
@@ -56,23 +49,20 @@ router.post('/users/:id', (req, res) => {
     // image: req.body.image || '/images/default-img.jpeg'
     image: req.body.image
   };
-  req.body = req.sanitize(req.body);
+  // req.body = req.sanitize(req.body);
   
-  User.findById(req.params.id)
-  .then(user => {
     Joke.create(newJoke)
     .then(joke => {
-      console.log(joke);
-    })
-    .then(() => {
-      Joke.findById({userId: user._id})
-      .then(jokes => {
-        res.render('userPage', { jokes: jokes, user: user });
+      User.findById(req.params.id)
+      .then(user => {
+        Joke.find({userId: user._id})
+        .then(jokes => {
+          res.render('userPage', { jokes: jokes, user: user });
+        }); 
       });
-    });
-  }).catch(err => {
+    }).catch(err => {
       console.error(err);
-      let error = 'There are some problems with creating new joke';
+      let error = "Cannot find jokes";
       res.status(500).render('errorMessage', { error: error });
     });
 
