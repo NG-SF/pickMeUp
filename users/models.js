@@ -14,8 +14,7 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   firstName: {type: String, default: ''},
-  lastName: {type: String, default: ''},
-  id: String
+  lastName: {type: String, default: ''}
 });
 
 

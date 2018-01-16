@@ -6,7 +6,6 @@ const express = require('express'),
   { router: jokesRouter} = require('./jokes'),
   { PORT, DATABASE_URL } = require('./config'),
   { router: usersRouter } = require('./users'),
-  { router: authRouter, localStrategy, jwtStrategy } = require('./auth'),
   app = express();
 
 app.set('view engine', 'ejs');
@@ -24,14 +23,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
 
 app.use('/jokes', jokesRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.use('*', (req, res) => {
   let message = 'Not Found';

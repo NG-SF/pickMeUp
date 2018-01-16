@@ -1,19 +1,10 @@
 <% include ./partials/header %>
 <div class="ui main text container segment">
-  <h1 class="ui huge header">Something went terribly wrong! </h1>
-  <div class="ui top attached">
-    <div class="item">
-      <div class="content">
-
-      <section class="description">
-        <p><%= error %></p>
-      </section>
+  <h1 class="ui huge header"> <%= error %></h1>
+  
 
       <a class="ui blue basic big button" role="button" href="/jokes">Go back to home page</a>
 
-    </div>
-  </div>
-</div>
 </div>
 
 <% include ./partials/footer %>

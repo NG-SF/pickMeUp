@@ -31,7 +31,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// LogIn Route redirects to login page
+// SignUp Route redirects to sign-up page
 router.get('/signUp', (req, res) => {
   res.render('signUp');
 });
@@ -46,8 +46,8 @@ router.post('/users/:id', (req, res) => {
   let newJoke = {
     title: req.body.title,
     content: req.body.content,
-    // image: req.body.image || '/images/default-img.jpeg'
-    image: req.body.image
+    image: req.body.image || '/images/default-img.jpeg',
+    userId: req.params.id
   };
   // req.body = req.sanitize(req.body);
   
@@ -85,7 +85,7 @@ router.get('/users/:id', (req, res) => {
 });
 
 // EDIT Route redirects to edit joke page
-router.get('/:id/edit', (req, res) => {
+router.get('/users/edit/:id', (req, res) => {
   Joke.findById(req.params.id)
     .then(joke => res.render('edit', { joke: joke }))
     .catch(err => {
@@ -95,7 +95,7 @@ router.get('/:id/edit', (req, res) => {
 });
 
 // UPDATE Route
-router.put('/:id', (req, res) => {
+router.put('/users/:id', (req, res) => {
   // req.body = req.sanitize(req.body);
 
   const toUpdate = {};
@@ -111,22 +111,28 @@ router.put('/:id', (req, res) => {
   Joke.findByIdAndUpdate(req.params.id, { $set: toUpdate })
     .then(joke => {
       res.status(204);
-      res.redirect('/jokes');
+      const userId = joke.userId;
+      res.redirect('/jokes/users/' + userId);
     })
     .catch(err => res.status(500).render('errorMessage', { error: error }));
 });
 
 // DELETE Route
-router.delete('/:id', (req, res) => {
-  Joke.findByIdAndRemove(req.params.id, (err) => {
-    if (err) {
-      console.log('Error from delete route');
-      res.redirect('/jokes');
-    } else {
-      res.redirect('/jokes');
-      console.log('deleted joke');
-    }
-  });
+router.delete('/users/:id', (req, res) => {
+  let error = 'Server error happened while trying to delete a joke';
+  
+ Joke.findById(req.params.id)
+ .then(joke => {
+    const userId = joke.userId;
+   Joke.findByIdAndRemove(req.params.id)
+  .then( () => {
+      res.redirect('/jokes/users/' + userId);
+    });
+ })
+  .catch(err => {
+      console.error(err);
+      res.status(500).render('errorMessage', { error: error });
+    }); 
 });
 
 module.exports = { router };

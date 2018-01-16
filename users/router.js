@@ -80,12 +80,8 @@ router.post('/create',(req, res) => {
     .then(count => {
       if (count > 0) {
         // There is an existing user with the same username
-        return Promise.reject({
-          code: 422,
-          reason: 'ValidationError',
-          message: 'Username already taken',
-          location: 'username'
-        });
+      const message = "Username already taken. Sorry :(";
+      return res.render('errorMessage', {error: message});
       }
       // If there is no existing user, hash the password
       return User.hashPassword(password);
@@ -107,7 +103,8 @@ router.post('/create',(req, res) => {
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
-      res.status(500).json({code: 500, message: 'Internal server error'});
+      const message = "Internal server error";
+      return res.render('errorMessage', {error: message});
     });
 });
 
@@ -116,14 +113,20 @@ router.post('/create',(req, res) => {
 // Post to register a new user
 router.post('/login',(req, res) => {
   
+  // check if username and password present
+  const requiredFields = ['username', 'password'];
+  const missingField = requiredFields.find(field => !(field in req.body));
+    if (missingField) {
+      const message = "Username and password are both required.";
+      return res.render('errorMessage', {error: message});
+  }
+
   let {username, password} = req.body;
   
-
   return User.findOne({username})
     .then(user => {
-      if (user && user.validatePassword(password)) {
-        
-      return res.redirect('/jokes/users/' + user._id);
+      if (user && user.validatePassword(password)) {   
+        return res.redirect('/jokes/users/' + user._id);
       } 
       else {
         return res.redirect('/jokes/login');
