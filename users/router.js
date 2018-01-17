@@ -28,6 +28,11 @@ passport.deserializeUser(User.deserializeUser());
 
 //==========================
 
+router.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
+
 // Post to register a new user
 router.post('/create',(req, res) => {
  
@@ -65,11 +70,12 @@ console.log('id=======', user._id);
 
 // Log out Route ends user session and redirects to homepage
 router.get('/logout', (req, res) => {
-  req.logOut();
-  req.session.destroy(function (err) {
-    req.user = null;
-    res.redirect('/jokes');
-  }); 
+  req.logout();
+  res.redirect('/jokes');
+  // req.session.destroy(function (err) {
+  //   req.user = null;
+  //   res.redirect('/jokes');
+  // }); 
 });
 
 function isLoggedIn (req, res, next) {
