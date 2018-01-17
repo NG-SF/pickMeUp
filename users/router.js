@@ -7,17 +7,25 @@ const express = require('express'),
       passportLocalMongoose = require('passport-local-mongoose'),
       config = require('../config'),
       jsonParser = bodyParser.json(),
+      session = require('express-session'),
       app = express();
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 //===================
-app.use(require('express-session')({
+// app.use(require('express-session')({
+//   secret: config.SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }));
+
+app.use(session ({
   secret: config.SECRET,
   resave: false,
   saveUninitialized: false
 }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -50,17 +58,14 @@ console.log('user registered!');
 });
 
 // Post to log in an existing user
-router.post('/login',passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   failureRedirect: '/jokes/login'
 }), (req, res) => {
  
  let {username} = req.body;
 
-console.log('username', username);
-
   return User.findOne({username})
   .then(user => {
-console.log('id=======', user._id);
 
       return res.redirect('/jokes/users/' + user._id);
   })
