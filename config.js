@@ -6,3 +6,5 @@
   exports.PORT = process.env.PORT || 8080;
 
 exports.JWT_SECRET = process.env.JWT_SECRET;
+
+exports.SECRET = process.env.SECRET;

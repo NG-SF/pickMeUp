@@ -12,6 +12,21 @@ const chai = require('chai'),
 
 chai.use(chaiHttp);
 
+let userId;
+function newUser() {
+  const user = {
+    username: 'user1',
+    password: '1111111',
+    firstName: 'Jane',
+    lastName: 'Doe'
+  };
+  User.create(user)
+  .then(user => {
+    userId = user._id;
+    return user;
+  });
+}
+
 // generate documents for testing using Faker library
 function seedJokesData() {
   console.info('seeding data');
@@ -31,7 +46,7 @@ function generateJokesData() {
     title: faker.lorem.sentence(),
     content: faker.lorem.paragraph(),
     image: faker.image.imageUrl(),
-    created: faker.date.recent()
+    userId: userId
 };
 }
 // this function deletes the entire database.
@@ -70,7 +85,23 @@ describe('GET endpoint', function() {
 //3. prove the number of jokes we got back is equal to number in db. 
 // need to have access to mutate and access `res` across `.then()` calls below, so declare it here so can modify in place
   let res;
-  })
+       return chai.request(app)
+      .get(`/jokes/user/${userId}`)
+      .then(function(_res) {
+// so subsequent .then blocks can access response object
+        res = _res;
+        expect(res).to.have.status(200);
+
+      Joke.find({userId: user._id})
+      .then(jokes => {
+
+    });
+    })
+      .catch(function (err) {
+            throw err;
+          });
+
+  });
   });
 
 
@@ -79,7 +110,7 @@ describe('POST endpoint', function() {
 // then prove that the blog we get back has
 // right keys, and that `id` is there (which means
 // the data was inserted into db)
-  it('should add a new joke', function() {
+  xit('should add a new joke', function() {
     const newJoke = generateJokesData();
  
     });

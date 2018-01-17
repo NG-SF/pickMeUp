@@ -33,7 +33,7 @@ describe('User authorization routes', function() {
 
   describe('/users/login Route', function() {
     describe('POST', function() {
-      xit('Should reject users with missing username', function() {
+      it('Should reject users with missing username', function() {
         return chai
           .request(app)
           .post('/users/login')
@@ -389,7 +389,8 @@ describe('User authorization routes', function() {
           })
           .then(passwordIsCorrect => {
             expect(passwordIsCorrect).to.be.true;
-          });
+          })
+          .catch(err => console.error(error));
       });
       
       xit('Should trim firstName and lastName', function() {
