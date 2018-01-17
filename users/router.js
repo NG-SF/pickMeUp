@@ -117,8 +117,8 @@ router.post('/login',(req, res) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
-      const message = "Username and password are both required.";
-      return res.render('errorMessage', {error: message});
+      
+      return res.status(403).json({code: 403, message: "Username and password are both required."});
   }
 
   let {username, password} = req.body;
