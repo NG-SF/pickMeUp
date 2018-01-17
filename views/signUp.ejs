@@ -10,48 +10,36 @@
         <h2 class="ui teal header">Sign Up</h2>
 
         <div class="field">
-            <div class="ui left icon input">
+            <div class="ui input">
               <label for="firstName">First Name: </label>
-              <i class="user icon"></i>
+             
               <input type="text" name="firstName" placeholder="First name" id="firstName">
             </div>
           </div>
 
         <div class="field">
-            <div class="ui left icon input">
+            <div class="ui input">
               <label for="lastName">Last Name: </label>
-              <i class="user icon"></i>
+             
               <input type="text" name="lastName" placeholder="Last name" id="lastName">
             </div>
           </div>
 
-        <div class="ui error">
          <div class="required field">
-            <div class="ui left icon input">   
+            <div class="ui input">   
               <label for="userName">Username: </label>
-              <i class="paw icon"></i>
+              
               <input type="text" name="username" placeholder=" User name (make it unique)" required id="userName">
             </div>
           </div>
-            <section class="ui error message">
-            <h2 class="header">Validation Error</h2>
-          <p>Username is required and has to be unique.</p>
-          </section>
-        </div>
 
-      <div class="ui error">
           <div class="required field">
-            <div class="ui left icon input">    
+            <div class="ui input">    
               <label for="password">Password: </label>
-              <i class="lock icon"></i>
+              
               <input type="password" name="password" placeholder="Password (must be between 5-15 characters" required id="password">
             </div>
           </div>
-        <section class="ui error message">
-        <h2 class="header">Validation Error</h2>
-          <p>Password is required and should be minimum 10 characters long.</p>
-        </section>
-      </div>
 
           <button class="ui large purple submit button" type="submit">Submit</button>
         </div>

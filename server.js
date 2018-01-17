@@ -6,8 +6,8 @@ const express = require('express'),
   passport = require('passport'),
   localStrategy = require('passport-local'),
   passportLocalMongoose = require('passport-local-mongoose'),
-  { User } = require('./users/models'),
   config = require('./config'),
+  { User } = require('./users/models'),
   { router: jokesRouter} = require('./jokes'),
   { PORT, DATABASE_URL } = require('./config'),
   { router: usersRouter } = require('./users'),
@@ -29,16 +29,18 @@ app.use(function (req, res, next) {
 });
 
 //===================
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(require('express-session')({
   secret: config.SECRET,
   resave: false,
   saveUninitialized: false
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 //==========================
 
 app.use('/jokes', jokesRouter);
@@ -49,6 +51,7 @@ app.use('*', (req, res) => {
   let message = 'Not Found';
   return res.status(404).render('errorMessage', { error: message });
 });
+
 
 let server;
 

@@ -5,6 +5,10 @@ const express = require('express'),
   jsonParser = bodyParser.json(),
   mongoose = require('mongoose'),
   router = express.Router(),
+  passport = require('passport'),
+  localStrategy = require('passport-local'),
+  passportLocalMongoose = require('passport-local-mongoose'),
+  config = require('../config'),
   { Joke } = require('./models'),
   { User } = require('../users/models'),
   app = express();
@@ -17,6 +21,22 @@ router.use(expressSanitizer());
 router.use(express.static('public'));
 router.use(methodOverride('_method'));
 router.use(bodyParser.json());
+
+//===================
+app.use(require('express-session')({
+  secret: config.SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//==========================
 
 // generic error message
 let error = 'Sorry. Something went wrong on the dark side.';
@@ -37,7 +57,7 @@ router.get('/signUp', (req, res) => {
 });
 
 // NEW Route redirects to form to enter new joke
-router.get('/users/new/:id', (req, res) => {
+router.get('/users/new/:id', isLoggedIn, (req, res) => {
   res.render('newJoke', {id: req.params.id});
 });
 
@@ -69,7 +89,7 @@ router.post('/users/:id', (req, res) => {
 });
 
 //SHOW Route
-router.get('/users/:id', (req, res) => {
+router.get('/users/:id', isLoggedIn,(req, res) => {
   User.findById(req.params.id)
   .then(user => {
 
@@ -85,7 +105,7 @@ router.get('/users/:id', (req, res) => {
 });
 
 // EDIT Route redirects to edit joke page
-router.get('/users/edit/:id', (req, res) => {
+router.get('/users/edit/:id', isLoggedIn, (req, res) => {
   Joke.findById(req.params.id)
     .then(joke => res.render('edit', { joke: joke }))
     .catch(err => {
@@ -118,7 +138,7 @@ router.put('/users/:id', (req, res) => {
 });
 
 // DELETE Route
-router.delete('/users/:id', (req, res) => {
+router.delete('/users/:id', isLoggedIn, (req, res) => {
   let error = 'Server error happened while trying to delete a joke';
   
  Joke.findById(req.params.id)
@@ -134,5 +154,12 @@ router.delete('/users/:id', (req, res) => {
       res.status(500).render('errorMessage', { error: error });
     }); 
 });
+
+function isLoggedIn (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/jokes/login');
+}
 
 module.exports = { router };
