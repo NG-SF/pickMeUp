@@ -2,10 +2,4 @@ language: node_js
 node_js: node
 services:
 - mongodb
-deploy:
-  provider: heroku
-  api_key:
-    secure: Kcj86UzCkxcZCpM5p92zjyBi8knQwY3WyzIGzKcz6tBs3vk+CWBsnQaC9+rNNTJwkMK19xaebhApBZ80vPNAeyfFCOwUUC4oatdbpqFqivSHpwJ/B3mcTXqStNsjCjjhJIIUzCxFDjvlL6FpfCKpewZldbbd08z+Ri4gHdm0cE4Xm6KYt2ebvPQvs9JjPQJA42KVRypW/2Pz4JdLERDsHXpXCWIq/3ZDC1HChQlLnOhk37BHA46frKRd1JVFfAfcrV0QvuNu4Ccd2mJBW/hdhypk9ovc8IiP1QxgJzJQ65w7WuvqgMJjQQTcZmIH04l3quEj+U5Q/Hw2QIcn8gHW7xLj3dmvW31O2841ym16trvOjiqGGK7qT3bNjN5/KGhuQwWEbwrVwX1E0p3cLPTXe2CWzlwZ+Asyx8r9zEuH1MWVFk134u+2wxMAoO+ASHnhtlYlTzW4LrLioEATg6aDJuFG4hsyIcK5tBDcJA3QNFRXzVMHw2nsES40UhF+0bjEHWISO0SxBPiC681jJYoQe/w9EE8n2M7rWvHxgGcj5mkdedvXduvrYp5qI9lY73+562dvE0+5vUQpfSfk6r/wzghonhbBdCOVrTO/sk3/GtkNFHNos4ls8CrT9KUDb7oiU1CWoH97XG1KJ8rFQDTvO1zhBd6bkAap9AszSR/93ws=
-  app: pickMeUp
-  on:
-    repo: NG-SF/pickMeUp
+
