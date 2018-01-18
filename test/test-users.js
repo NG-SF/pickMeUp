@@ -97,7 +97,7 @@ describe('/users/create Route', function() {
 
 
             const res = err.response;
-console.log("message=======",res.body.message);
+// console.log("message=======",res.body.message);
 
             expect(res).to.have.status(422);
             expect(res.body.reason).to.equal('ValidationError');

@@ -71,11 +71,11 @@ describe('Jokes/Users/ID API resource', function() {
 
 describe('GET endpoint', function() {
 
-  xit('should return all existing jokes for individual user', function() {
+  it('should return all existing jokes for individual user', function() {
 
 let res;
     return chai.request(app)
-      .get(`/jokes/${testUser.id}`)
+      .get(`/jokes/`)
       .then(function(_res) {
 // so subsequent .then blocks can access response object
         res = _res;
