@@ -12,18 +12,33 @@ router.post('/create',(req, res) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
-      return res.status(422);
+
+console.log('missingField====', missingField);
+
+      return res.status(422).json({
+        code: 422,
+        reason: 'ValidationError',
+        message: 'Missing field',
+        location: missingField
+    });
   }
 //check that all the fields are strings
-  const stringFields = ['username', 'password', 'firstName', 'lastName'];
-  const nonStringField = stringFields.find(
-    field => field in req.body && typeof req.body[field] !== 'string'
-  );
+//   const stringFields = ['username', 'password', 'firstName', 'lastName'];
+//   const nonStringField = stringFields.find(
+//     field => field in req.body && typeof req.body[field] !== 'string'
+//   );
 
-  if (nonStringField) {
-    let error = 'Incorrect field type: expected string';
-    return res.status(422).render('errorMessage', { error: error });
-  }
+// console.log('nonStringField', nonStringField);
+// console.log('req.Body====', req.body);
+
+//   if (nonStringField) {
+//     return res.status(422).json({
+//       code: 422,
+//       reason: 'ValidationError',
+//       message: 'Incorrect field type: expected string',
+//       location: nonStringField
+//     });
+//   }
   // If the username and password aren't trimmed we give an error.  Users might
   // expect that these will work without trimming (i.e. they want the password
   // "foobar ", including the space at the end).  We need to reject such values
@@ -37,8 +52,15 @@ router.post('/create',(req, res) => {
   );
 
   if (nonTrimmedField) {
-    let error = 'Cannot start or end with whitespace';
-    return res.status(422).render('errorMessage', { error: error });
+    // let error = 'Cannot start or end with whitespace';
+    // return res.status(422).render('errorMessage', { error: error });
+  return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Cannot start or end with whitespace',
+      location: nonTrimmedField
+    });
+
   }
 // check that username and password are the correct length
   const sizedFields = {
@@ -64,9 +86,15 @@ router.post('/create',(req, res) => {
   );
 
   if (tooSmallField || tooLargeField) {
-   let error = "Password should be between 5 and 15 characters.";
-   
-    return res.status(422).render('errorMessage', { error: error });
+  //  let error = "Password should be between 5 and 15 characters.";
+  //   return res.status(422).render('errorMessage', { error: error });
+return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: tooSmallField ? `Must be at least ${sizedFields[tooSmallField].min} characters long` : `Must be at most ${sizedFields[tooLargeField].max} characters long`,
+      location: tooSmallField || tooLargeField
+    });
+
   }
 
   let {username, password, firstName = '', lastName = ''} = req.body;
@@ -80,8 +108,15 @@ router.post('/create',(req, res) => {
     .then(count => {
       if (count > 0) {
         // There is an existing user with the same username
-      const message = "Username already taken. Sorry :(";
-      return res.render('errorMessage', {error: message});
+      // const message = "Username already taken. Sorry :(";
+      // return res.render('errorMessage', {error: message});
+return Promise.reject({
+          code: 422,
+          reason: 'ValidationError',
+          message: 'Username already taken',
+          location: 'username'
+        });
+
       }
       // If there is no existing user, hash the password
       return User.hashPassword(password);

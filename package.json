@@ -4,7 +4,7 @@
   "description": "app for creating collection of your favorite jokes",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --exit" 
   },
   "author": "Nataliya Gapochka",
   "license": "ISC",
