@@ -3,43 +3,55 @@
 <div class="ui container login">
 
   <div class="ui middle aligned center aligned grid">
-    <div class="six wide column">
+    <div class="seven wide column">
 
       <form class="ui big form" action="/users/create" method="POST">
         <div class="ui stacked segment">
-        <h2 class="ui teal header">Sign Up</h2>
+        <h2 class="ui purple header">Sign Up</h2>
 
         <div class="field">
+            <label for="firstName">First Name: </label>
             <div class="ui left icon input">
-              <label for="firstName">First Name: </label>
               <i class="user icon"></i>
-              <input type="text" name="firstName" placeholder="First name" id="firstName">
+              <input type="text" name="firstName" id="firstName">
             </div>
           </div>
 
         <div class="field">
+            <label for="lastName">Last Name: </label>
             <div class="ui left icon input">
-              <label for="lastName">Last Name: </label>
               <i class="user icon"></i>
-              <input type="text" name="lastName" placeholder="Last name" id="lastName">
+              <input type="text" name="lastName" id="lastName">
             </div>
           </div>
 
-         <div class=" field">
+        <div class="ui error">
+         <div class="required field">
+            <label for="userName">Username: </label>
             <div class="ui left icon input">   
-              <label for="userName">Username: </label>
               <i class="paw icon"></i>
-              <input type="text" name="username" placeholder=" User name (make it unique)"  id="userName">
+              <input type="text" name="username" placeholder="username should be unique"  id="userName" required>
             </div>
           </div>  
+         <section class="ui error message">
+            <h2 class="header">Validation Error</h2>
+          <p>Username is required and should be unique</p>
+          </section>
+        </div>
 
-          <div class="field">
+        <div class="ui error">
+          <div class="required field">
+            <label for="password">Password: </label>
             <div class="ui left icon input">    
-              <label for="password">Password: </label>
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password (must be between 5-15 characters"  id="password">
+              <input type="password" name="password" placeholder="Password must be between 5-15 characters"  id="password" required>
             </div>
           </div>
+         <section class="ui error message">
+            <h2 class="header">Validation Error</h2>
+          <p>Password is required and should be between 5-15 chaaracters long</p>
+          </section>
+        </div>
 
           <button class="ui large purple submit button" type="submit">Submit</button>
         </div>
