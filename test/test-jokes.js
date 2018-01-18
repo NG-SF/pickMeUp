@@ -23,6 +23,14 @@ function seedJokesData() {
   return Joke.insertMany(seedData);
 }
 
+const testUser = {
+  firstName: 'Jane',
+  lastName: 'Doe',
+  username: 'janeD',
+  password: 'sunflower',
+  id: 'aaaaa55555bbbbb77777'
+};
+
 // generate an object representing a joke post
 // can be used to generate seed data for db
 // or request.body data
@@ -31,7 +39,7 @@ function generateJokesData() {
     title: faker.lorem.sentence(),
     content: faker.lorem.paragraph(),
     image: faker.image.imageUrl(),
-    created: faker.date.recent()
+    userId: testUser.id
 };
 }
 // this function deletes the entire database.
@@ -63,14 +71,25 @@ describe('Jokes/Users/ID API resource', function() {
 
 describe('GET endpoint', function() {
 
-  xit('should return all existing jokes', function() {
-// strategy:
-//1. get back all blog jokes returned by by GET request to `/jokes`
-//2. prove res has right status, data type
-//3. prove the number of jokes we got back is equal to number in db. 
-// need to have access to mutate and access `res` across `.then()` calls below, so declare it here so can modify in place
-  let res;
-  })
+  xit('should return all existing jokes for individual user', function() {
+
+let res;
+    return chai.request(app)
+      .get(`/jokes/${testUser.id}`)
+      .then(function(_res) {
+// so subsequent .then blocks can access response object
+        res = _res;
+        expect(res).to.have.status(200);
+        return Joke.count();
+      })
+      .then(function(count) {
+        expect(count).to.be.equal(10);
+      })
+      .catch(function (err) {
+            throw err;
+          });
+
+  });
   });
 
 
@@ -79,7 +98,7 @@ describe('POST endpoint', function() {
 // then prove that the blog we get back has
 // right keys, and that `id` is there (which means
 // the data was inserted into db)
-  it('should add a new joke', function() {
+  xit('should add a new joke', function() {
     const newJoke = generateJokesData();
  
     });
