@@ -1,10 +1,5 @@
 <% include ./partials/header %>
 
-<div class="ui container login">
-
-  <div class="ui middle aligned center aligned grid">
-    <div class="seven wide column">
-
       <form class="ui big form" action="/users/create" method="POST">
         <div class="ui stacked segment">
         <h2 class="ui purple header">Sign Up</h2>
@@ -30,7 +25,7 @@
             <label for="userName">Username: </label>
             <div class="ui left icon input">   
               <i class="paw icon"></i>
-              <input type="text" name="username" placeholder="username should be unique"  id="userName" required>
+              <input type="text" name="username" placeholder="should be unique"  id="userName" required>
             </div>
           </div>  
          <section class="ui error message">
@@ -44,7 +39,7 @@
             <label for="password">Password: </label>
             <div class="ui left icon input">    
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password must be between 5-15 characters"  id="password" required>
+              <input type="password" name="password" placeholder="must be 5 - 15 characters"  id="password" required>
             </div>
           </div>
          <section class="ui error message">
@@ -56,11 +51,6 @@
           <button class="ui large purple submit button" type="submit">Submit</button>
         </div>
       </form>
-
-    </div><!-- end of column -->
-
-</div>
-</div>
 
 
 <% include ./partials/footer %>

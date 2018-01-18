@@ -1,16 +1,18 @@
+html, body {
+  height: 100%;
+}
 
 body {
   padding-bottom: 55px;
   box-sizing: border-box;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  min-height: 100vh;
   background-color: aliceblue;
 }
 
 main {
-  margin-top: 1%;
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 .ui.menu {
@@ -18,9 +20,18 @@ main {
 }
 
 #banner {
-  padding: 220px;
-  margin-top: 4.5rem;
+  padding: 200px;
+  margin-top: -1.2rem;
   background-color: #ffcccc;
+  text-align: center;
+}
+
+#banner h1 {
+  font-size: 3rem;
+  font-style: italic;
+  line-height: 5.3rem;
+  line-break: auto;
+  word-break: break;
 }
 
 nav a,
@@ -87,9 +98,17 @@ label {
   padding: 20px;
 }
 
+.ui.form {
+  width: 28%;
+  min-width: 300px;
+  margin: 30px auto;
+  text-align: center;
+}
+
 .ui.form .field>label {
   font-size: 1.2rem;
   margin-left: 20px;
+  margin-bottom: 10px;
 }
 
 .ui.form input[type=text],  
@@ -98,10 +117,10 @@ label {
   font-size: 1.1em;
 }
 
+
 footer {
   text-align: center;
-  width: 100%;
-  height: 85px;
+  padding: 20px;
+  height: 90px;
   background: #ff9999;
-  flex: 2;
 }

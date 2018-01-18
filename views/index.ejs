@@ -1,32 +1,10 @@
-<html lang="en">
-  <head>
-    <title>PickMeUp</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-<link rel="stylesheet" href="/stylesheets/app.css">
-  </head>
 
-<body>
- 
-    <nav class="ui purple inverted fixed stackable menu" role="navigation">
-        <div class="ui container">
-          <div class="ui header large brown inverted item"><i class="smile icon"></i>PickMeUp</div>
-          <a href="/jokes" class="item">Home</a>
-          <a href="/jokes/login" class="item">Login</a>
-          <a href="/jokes/signUp" class="item">Sign Up</a>
-          <div class="right menu">
-            <a href="/jokes" class="ui item">Log Out</a>
-          </div> 
-        </div>
-    </nav>
+<% include ./partials/header %>
 
-  <div class="ui inverted vertical masthead center aligned segment" id="banner">
-    <div class="ui text container">
-      <h1 class="ui huge purple header">Create the collection of jokes that make you smile</h1>
-      <div class="ui huge orange button">Get Started <i class="right arrow icon"></i></div>
-    </div>
-</div><!-- end of masthead vertical -->
+  <div id="banner">
+      <h1 class="ui huge centered header"><q>Good humor is a tonic for mind and body. It is the best antidote for anxiety and depression. It is a business asset. It attracts and keeps friends. It lightens human burdens. It is the direct route to serenity and contentment.</q> </h1>
+      <h2>- Grenville Kleiser -</h2>    
+</div>
 
 <div class="ui vertical stripe segment">
   <div class="ui middle aligned stackable grid container">
@@ -66,7 +44,7 @@
   <section class="ui text container" id="part-3">
       <p class="text">There are many jokes in the world, some are smart, some can make you laugh very hard, and some jokes are not funny at all. </p>
       <p class="text">Many studies show the benefitial effects of humor on dealing with stress, increasing resilience, helping in coping with adversity. </p>
-      <p class="text">Any of us would like to have some pick-me-up on a not-so-good-really-crappy-day and collection of funny jokes can be a good start.</p>
+      <p class="text">Any of us would like to have some pick-me-up on a not-so-good-really-bad-day and collection of funny jokes can be a good start.</p>
       <p class="text"> So <a href="/jokes/login">sign up</a> today to start collection of jokes that make you smile.</p>
 
       <div class="ui raised segment" id="part-4">
@@ -85,12 +63,5 @@
    </section><!-- end of text container -->
 </div><!-- end of vertical stripe segment -->
 
+<% include ./partials/footer %>
 
-<div class="foot">
- <footer class="ui orange footer segment">
-      <a href="https://github.com/NG-SF"><i class="github icon"></i></a>
-  </footer>
-</div>
-
-</body>
-</html>
