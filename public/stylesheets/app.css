@@ -8,11 +8,16 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: aliceblue;
+  background-color: #FBF2EF;
 }
 
 main {
   flex: 1 0 auto;
+}
+
+#nav {
+  background-color: #EAB687;
+  margin: 0;
 }
 
 .ui.menu {
@@ -21,8 +26,8 @@ main {
 
 #banner {
   padding: 200px;
-  margin-top: -1.2rem;
-  background-color: #ffcccc;
+  /* margin-top: -1.2rem; */
+  background-color:#E9BAA8;
   text-align: center;
 }
 
@@ -48,28 +53,59 @@ i.icon {
 }
 
 .text {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+}
+
+.right {
+  text-align: right;
 }
 
 .joke-content {
   font-size: 1.3rem;
 }
 
+.demo {
+  padding-top: 3%;
+  text-align: left;
+}
+
 blockquote {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  line-height: 2rem;
 }
 
 #part-1,
-#part-2,
-#part-3,
-#part-4 {
-  padding-top: 7%;
-  padding-bottom: 7%;
+#part-2 {
+  padding-top: 11%;
+  padding-bottom: 11%;
+}
+
+#part-2bg {
+  background-color: #FEEFD6;
 }
 
 #part-3bg {
-  background-color: #DDFFF7;
-  padding-bottom: 5%;
+  background-color: #F1D3C7;
+}
+#part-3, 
+#part-4 {
+  padding-top: 7%;
+  padding-bottom: 15%;
+}
+
+#part-4bg {
+  background-color: #E5DBD5;
+}
+
+#part-4 li {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+#part-4 a {
+  color: #55443E;
+  line-height: 2.5rem;
+  font-size: 1.4rem;
 }
 
 .ui.card > .image > img,
@@ -103,6 +139,7 @@ label {
   min-width: 300px;
   margin: 30px auto;
   text-align: center;
+  background-color: #F3EEEB;
 }
 
 .ui.form .field>label {
@@ -117,10 +154,14 @@ label {
   font-size: 1.1em;
 }
 
+.hiUser {
+  color: rgb(152, 10, 213);
+  font-size: 2.3rem;
+}
 
 footer {
   text-align: center;
   padding: 20px;
-  height: 90px;
+  height: 100px;
   background: #ff9999;
 }

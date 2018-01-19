@@ -1,13 +1,18 @@
 <% include ./partials/header %>
 
-      <form class="ui big form warning" action="/users/login" method="POST">
-      <div class="ui raised segment">
-        
-      <h2 class="ui purple header">Log-in</h2>
+<form class="ui big form warning" action="/users/login" method="POST">
+  <div class="ui raised segment">
 
-        <div class="ui error">
-          <div class="required field">
-            <label for="userName">Username:</label>
+   <section class="demo">
+      <p class="text">Take look inside:</p>
+      <p class="text">Username: gandalf</p>
+      <p class="text">Password: youShellNotPass</p>
+    </section>
+
+    <h2 class="ui purple header">Log-in</h2>
+      <div class="ui error">
+        <div class="required field">
+          <label for="userName">Username:</label>
             <div class="ui left icon input">
               <input type="text" name="username" placeholder="Username" required id="userName">
               <i class="paw icon"></i>
@@ -19,9 +24,9 @@
           </section>
         </div>
 
-        <div class="ui error">
-          <div class="required field">
-            <label for="password">Password:</label>
+      <div class="ui error">
+        <div class="required field">
+          <label for="password">Password:</label>
             <div class="ui left icon input">
               <input type="password" name="password" placeholder="Password" required id="password">
               <i class="lock icon"></i>
@@ -30,13 +35,12 @@
             <h2 class="header">Validation Error</h2>
           <p>Password is required</p>
           </section>
-        </div>
+      </div>
 
-          <button class="ui large purple submit button" type="submit">Submit</button>
-        </div>
-        </div>
-
-      </form>
+    <button class="ui large purple submit button" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
 
 
 

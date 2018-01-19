@@ -5,7 +5,8 @@
   <div class="ui top attached segment">
   
   <div class="ui raised sentered segment">
-    <h1 class="ui huge teal header">Hello there! ===<%= user.username %>=== Nice to see you! Here is the collection of your jokes</h1>
+    <h1 class="ui huge teal header">Hello there! <span class="hiUser"> <%= user.username %> </span> </h1>
+    <h2 class="ui large header"> Nice to see you! Here is the collection of your jokes</h2>
         <p class="text">Time to smile :)</p>
       
       <form action="/jokes/users/new/<%= user._id %>" method="GET">
