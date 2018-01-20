@@ -222,10 +222,17 @@ label {
   margin-left: 0;
 }
 
+/* User page style */
+ #user-bg {
+   background: url('/images/banner-bg.jpeg') no-repeat center;
+ }
+
 .hiUser {
   color: rgb(152, 10, 213);
   font-size: 2.3rem;
 }
+
+
 
 footer {
   text-align: center;
