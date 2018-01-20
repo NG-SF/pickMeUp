@@ -1,12 +1,11 @@
 <% include ./partials/header %>
 
-<div class="ui main text container segment">
+<div class="form-container">
+  <form class="ui form" id="form" action="/jokes/users/<%= id %>" method="POST">
   <h1 class="ui huge purple centered header">Add new joke</h1>
-
-  <form class="ui form" action="/jokes/users/<%= id %>" method="POST">
-    <div class="required field">
+    <div class=" field">
       <label for="title">Title</label>
-      <input type="text" name="title" placeholder="title is required" id="title" required>
+      <input type="text" name="title" placeholder="title" id="title">
     </div>
     <div class="field">
       <label for="image">Image</label>
@@ -21,5 +20,6 @@
   </form>
 </div>
 
-
-<% include ./partials/footer %>
+</main>
+</body>
+</html>

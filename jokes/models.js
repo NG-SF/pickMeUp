@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 mongoose.Promise = global.Promise;
 
 const jokeSchema = mongoose.Schema({
-  title: { type: String, required: true },
+  title: { type: String, required: false },
   content: String,
   image: String,
   created: { type: Date, default: Date.now() },

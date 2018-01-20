@@ -41,33 +41,6 @@ router.get('/users/new/:id', (req, res) => {
   res.render('newJoke', {id: req.params.id});
 });
 
-// CREATE Route
-router.post('/users/:id', (req, res) => {
-  let newJoke = {
-    title: req.body.title,
-    content: req.body.content,
-    image: req.body.image || '/images/default-img.jpeg',
-    userId: req.params.id
-  };
-  // req.body = req.sanitize(req.body);
-  
-    Joke.create(newJoke)
-    .then(joke => {
-      User.findById(req.params.id)
-      .then(user => {
-        Joke.find({userId: user._id})
-        .then(jokes => {
-          res.render('userPage', { jokes: jokes, user: user });
-        }); 
-      });
-    }).catch(err => {
-      console.error(err);
-      let error = "Cannot find jokes";
-      res.status(500).render('errorMessage', { error: error });
-    });
-
-});
-
 //SHOW Route
 router.get('/users/:id', (req, res) => {
   User.findById(req.params.id)
@@ -84,6 +57,33 @@ router.get('/users/:id', (req, res) => {
 
 });
 
+// CREATE Route
+router.post('/users/:id', (req, res) => {
+  
+  let newJoke = {
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    userId: req.params.id
+  };
+  req.body = req.sanitize(req.body);
+
+    Joke.create(newJoke)
+    .then(joke => {
+      User.findById(req.params.id)
+      .then(user => {
+        Joke.find({userId: user._id})
+        .then(jokes => {
+          res.render('userPage', { jokes: jokes, user: user });
+        }); 
+      });
+    }).catch(err => {
+      console.error(err);
+      let error = "Cannot find jokes";
+      res.status(500).render('errorMessage', { error: error });
+    });
+});
+
 // EDIT Route redirects to edit joke page
 router.get('/users/edit/:id', (req, res) => {
   Joke.findById(req.params.id)
@@ -96,7 +96,6 @@ router.get('/users/edit/:id', (req, res) => {
 
 // UPDATE Route
 router.put('/users/:id', (req, res) => {
-  // req.body = req.sanitize(req.body);
 
   const toUpdate = {};
   const updatableFields = ['title', 'content', 'image'];
@@ -107,6 +106,7 @@ router.put('/users/:id', (req, res) => {
       toUpdate[field] = req.body[field];
     }
   });
+  req.body = req.sanitize(req.body);
 
   Joke.findByIdAndUpdate(req.params.id, { $set: toUpdate })
     .then(joke => {

@@ -1,33 +1,41 @@
 
 <% include ./partials/header %>
 
- <div class="ui doubling stackable grid container">
-  <div class="ui top attached segment">
-  
-  <div class="ui raised sentered segment">
-    <h1 class="ui huge teal header">Hello there! <span class="hiUser"> <%= user.username %> </span> </h1>
-    <h2 class="ui large header"> Nice to see you! Here is the collection of your jokes</h2>
-        <p class="text">Time to smile :)</p>
+  <div class="ui doubling stackable container">
+   <div class="ui top  segment">
+
+  <div class="ui raised centered segment">
+    <h1 class="ui huge teal header">Hello there! <span class="hiUser"> <%= (user.username)[0].toUpperCase() + (user.username).substring(1) %> </span> </h1>
+    <h2 class="ui large header"> Nice to see you!</h2>
+    <p class="text">Start creating your collection.</p>
       
       <form action="/jokes/users/new/<%= user._id %>" method="GET">
           <button class="ui purple basic big button">Add a new joke</button>
-      </form>
-     
-  </div>
+      </form>   
+   </div>
 
-    <div class="ui two stackable cards">
+      <div class="ui two stackable cards">
 
     <% jokes.forEach(function(joke) { %>
-      <section class="ui padded purple card" role="region">
+     
+      <section class="ui padded purple  card" role="region">
 
-          <div class="image small">
-            <img class="ui centered rounded os small image" src="<%= joke.image %>" alt="joke image">
+      <div class="content">
+        <h2 class="header"> <%= joke.title %></h2>
+      </div>
+
+      <%if ( joke.image  !== '') { %>
+          
+          <div class="ui medium centered image" id="image">
+            <img class="ui centered rounded image" src="<%= joke.image %>" alt="joke image">
           </div>
-        
+      
+      <% } %>
+
           <div class="content">
-          <h2 class="header">Title: <%= joke.title %></h2>
+          
             <div class="meta">
-              <span class="date"><%= joke.publishDate %></span>
+              <span class="date">Added on <%= joke.publishDate %></span>
             </div>
             <div class="description">
               <p class="joke-content"><%= joke.content %></p>
@@ -40,10 +48,16 @@
             </div>
         </div>
       </section>
+      
     <% }); %>
 
     </div>
-  </div>
-</div>
 
-<% include ./partials/footer %>
+    </div>
+  </div>
+
+<div class="margin-top"></div>
+
+</main>
+</body>
+</html>

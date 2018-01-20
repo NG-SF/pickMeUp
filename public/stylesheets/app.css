@@ -13,10 +13,11 @@ body {
 
 main {
   flex: 1 0 auto;
+  margin-top: 3%;
 }
 
 #nav {
-  background-color: #EAB687;
+  background-color: #E9BAA8;
   margin: 0;
 }
 
@@ -27,8 +28,9 @@ main {
 #banner {
   padding: 200px;
   /* margin-top: -1.2rem; */
-  background-color:#E9BAA8;
+  background-color:#F1D3C7;
   text-align: center;
+  margin-top: -3%;
 }
 
 #banner h1 {
@@ -58,6 +60,14 @@ i.icon {
 
 .right {
   text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.margin-top {
+  margin-top: 30px;
 }
 
 .joke-content {
@@ -108,11 +118,11 @@ blockquote {
   font-size: 1.4rem;
 }
 
-.ui.card > .image > img,
+/* .ui.card > .image > img,
 .ui.cards > .card > .image > img {
-  height: 30%;
+  height: 35%;
   width: auto;
-}
+} */
 
 .btns {
   text-align: center;
@@ -139,7 +149,6 @@ label {
   min-width: 300px;
   margin: 30px auto;
   text-align: center;
-  background-color: #F3EEEB;
 }
 
 .ui.form .field>label {
@@ -152,6 +161,20 @@ label {
 .ui.form input[type=password] {
   margin-left: 4%;
   font-size: 1.1em;
+}
+
+#form {
+  min-width: 310px;
+  width: 450px;
+}
+
+#form.ui.form input[type=text],  
+#form.ui.form input[type=password] {
+  margin-left: 0;
+}
+
+#form.ui.form .field>label {
+  margin-left: 0;
 }
 
 .hiUser {
