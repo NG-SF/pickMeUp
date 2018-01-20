@@ -26,7 +26,7 @@ main {
 }
 
 #banner {
-  padding: 200px;
+  padding: 12%;
   /* margin-top: -1.2rem; */
   background-color:#F1D3C7;
   text-align: center;
@@ -146,7 +146,7 @@ label {
 
 .ui.form {
   width: 28%;
-  min-width: 300px;
+  min-width: 310px;
   margin: 30px auto;
   text-align: center;
 }
@@ -187,4 +187,34 @@ footer {
   padding: 20px;
   height: 100px;
   background: #ff9999;
+}
+
+/* responsive styles for smaller devices */
+@media only screen and (max-width: 770px) {
+
+  #banner h1 {
+  font-size: 2rem;
+  line-height: 3.3rem;
+}
+}
+
+@media only screen and (max-width: 425px) {
+  #banner {
+    padding-top: 95%;
+  }
+
+  #banner h1 {
+  font-size: 1.7rem;
+  line-height: 2.1rem;
+}
+  #banner h2 {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .form-responsive {
+    padding-top: 65%;
+  }
 }
