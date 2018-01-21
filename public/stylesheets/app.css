@@ -9,6 +9,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: #FBF2EF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }
 
 main {
@@ -17,14 +19,17 @@ main {
 }
 
 /* Navigation */
+nav {
+background-color: #e9baa8;
+}
+
 .nav-list {
   list-style: none;
-  background-color: #e9baa8;
   width: 100%;
   overflow: hidden;
-  top: 0;
+  max-width: 1000px;
+  margin: 0 auto;
   font-size: 0;
-  border: 1px solid #f1d3c7;
 }
 
 .nav-list li {
@@ -63,10 +68,6 @@ li a.active {
   font-size: 1.7rem;
 }
 
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
 
 /* Banner */
 #banner {
@@ -77,20 +78,21 @@ li a.active {
 }
 
 #banner h1 {
-  font-size: 2.6rem;
+  font-family: 'Courgette', cursive;
+  font-size: 4rem;
   font-style: italic;
-  line-height: 4.4rem;
+  line-height: 6rem;
   line-break: auto;
   word-break: break;
 }
 
 
-/* Main content */
+/* Across pages styles */
 i.icon {
   font-size: 2em;
 }
 
-#btn-delete {
+.btn-delete {
   display: inline;
 }
 
@@ -114,22 +116,20 @@ i.icon {
   font-size: 1.3rem;
 }
 
-.demo {
-  padding-top: 3%;
-  text-align: left;
-}
+/* Main content */
 
 blockquote {
   font-size: 1.3rem;
+  font-weight: bold;
   line-height: 2rem;
 }
 
 #part-1,
-#part-2 {
+#part-2,
+#part-5 {
   padding-top: 11%;
   padding-bottom: 11%;
 }
-
 
 #part-1bg {
   background-color:#F1D3C7;
@@ -177,18 +177,11 @@ blockquote {
   margin-top: 11px;
 }
 
-.login {
-  margin-top: 5%;
-}
-
-label {
-  text-align: left;
-}
-
 .ui.raised.segment {
   padding: 20px;
 }
 
+/* Forms styles */
 .ui.form {
   width: 28%;
   min-width: 310px;
@@ -222,6 +215,19 @@ label {
   margin-left: 0;
 }
 
+.login {
+  margin-top: 5%;
+}
+
+label {
+  text-align: left;
+}
+
+.demo {
+  padding-top: 3%;
+  text-align: left;
+}
+
 /* User page style */
  #user-bg {
    background: url('/images/banner-bg.jpeg') no-repeat center;
@@ -232,7 +238,7 @@ label {
   font-size: 2.3rem;
 }
 
-
+/* Footer styles */
 
 footer {
   text-align: center;
@@ -258,22 +264,7 @@ blockquote {
 }
 }
 
-@media only screen and (max-width: 425px) {
-  #banner h1 {
-  font-size: 1.7rem;
-  line-height: 2.1rem;
-}
-  #banner h2 {
-    font-size: 1.2rem;
-  }
-
-}
-
-@media screen and (max-width: 600px) {
-  .form-responsive {
-    padding-top: 65%;
-  }
-
+@media screen and (max-width: 746px) {
   .nav-list li,
   .nav-list li.right {
     float: none;
@@ -282,9 +273,31 @@ blockquote {
 
   .nav-list a {
     display: block;
+    border-bottom: 1px solid #F1D3C7;
   }
 
-  /* #banner {
-    margin-top: 1%;
-  } */
+  .nav-list {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .form-responsive {
+    padding-top: 65%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #banner {
+    background-color: #F1D3C7;
+    background-image: none;
+  }
+  #banner h1 {
+  font-size: 1.7rem;
+  line-height: 2.1rem;
+}
+  #banner h2,
+   #part-4 a {
+    font-size: 1.2rem;
+  }
 }

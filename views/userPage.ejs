@@ -21,11 +21,11 @@
       <section class="ui padded purple  card" role="region">
 
       <div class="content">
-        <h2 class="header"> <%= joke.title %></h2>
+        <h2 class="header" aria-label="title"> <%= joke.title %></h2>
       </div>
 
       <%if ( joke.image  !== '') { %>         
-          <div class="ui medium centered image" id="image">
+          <div class="ui medium centered image img">
             <img class="ui centered rounded image" src="<%= joke.image %>" alt="joke image">
           </div>      
       <% } %>
@@ -39,7 +39,7 @@
             </div>
             <div class="extra content btns">
               <a class="ui teal labeled basic icon button" role="button" href="/jokes/users/edit/<%= joke._id %>"><i class="edit icon"></i>Edit</a>
-              <form id="btn-delete" action="/jokes/users/<%= joke._id %>?_method=DELETE" method="POST">
+              <form class="btn-delete" action="/jokes/users/<%= joke._id %>?_method=DELETE" method="POST">
                 <button class="ui black labeled basic icon button"><i class="trash outline icon"></i>Delete</button>
               </form>
             </div>
