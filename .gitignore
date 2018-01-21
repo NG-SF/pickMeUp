@@ -4,6 +4,8 @@ node_modules
 # dotenv environment variables file
 .env
 
+DATABASE_URL="mongodb://blackSea:3blackSea509@ds261917.mlab.com:61917/jokes-app";
+
 # Optional npm cache directory
 .npm
 
