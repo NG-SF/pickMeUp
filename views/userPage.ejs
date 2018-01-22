@@ -1,47 +1,52 @@
 
 <% include ./partials/header %>
 
-  <div class="ui doubling stackable container">
+<div class="ui doubling stackable container">
    <div class="ui top  segment">
 
   <div class="ui raised centered segment" id="user-bg">
     <h1 class="ui huge teal header">Hello there! <span class="hiUser"> <%= (user.username)[0].toUpperCase() + (user.username).substring(1) %> </span> </h1>
     <h2 class="ui large header"> Nice to see you!</h2>
-    <p class="text">Start creating your collection.</p>
+    <p class="text">Have fun reading your favorite jokes, or add some new favorites.</p>
       
-      <form action="/jokes/users/new/<%= user._id %>" method="GET">
-          <button class="ui purple labeled basic icon large button"><i class="write icon"></i>Add new joke</button>
-      </form>   
+      <!-- redirects to new page to create new joke -->
+    <form action="/jokes/users/new/<%= user._id %>" method="GET">
+      <button class="ui purple labeled basic icon large button"><i class="write icon"></i>Add new joke</button>
+    </form>   
    </div>
 
-      <div class="ui two stackable cards">
-
+    <div class="ui two stackable cards">
+      <!-- if user has jokes render them on a page -->
     <% jokes.forEach(function(joke) { %>
      
       <section class="ui padded purple  card" role="region">
-
       <div class="content">
         <h2 class="header" aria-label="title"> <%= joke.title %></h2>
       </div>
-
+    
+    <!-- if user has not submitted image link, skip the image div -->
       <%if ( joke.image  !== '') { %>         
           <div class="ui medium centered image img">
             <img class="ui centered rounded image" src="<%= joke.image %>" alt="joke image">
           </div>      
       <% } %>
 
-          <div class="content">         
-            <div class="meta">
-              <span class="date">Added on <%= joke.publishDate %></span>
-            </div>
-            <div class="description">
-              <p class="joke-content"><%= joke.content %></p>
-            </div>
-            <div class="extra content btns">
-              <a class="ui teal labeled basic icon button" role="button" href="/jokes/users/edit/<%= joke._id %>"><i class="edit icon"></i>Edit</a>
-              <form class="btn-delete" action="/jokes/users/<%= joke._id %>?_method=DELETE" method="POST">
+        <div class="content">         
+          <div class="meta">
+            <span class="date">Added on <%= joke.publishDate %></span>
+          </div>
+          <div class="description">
+            <p class="joke-content"><%= joke.content %></p>
+          </div>
+          <div class="extra content btns">
+
+            <!-- redirects to edit page -->
+            <a class="ui teal labeled basic icon button" role="button" href="/jokes/users/edit/<%= joke._id %>"><i class="edit icon"></i>Edit</a>
+
+            <!-- sends request to delete joke -->
+            <form class="btn-delete" action="/jokes/users/<%= joke._id %>?_method=DELETE" method="POST">
                 <button class="ui black labeled basic icon button"><i class="trash outline icon"></i>Delete</button>
-              </form>
+            </form>
             </div>
         </div>
       </section>
@@ -49,12 +54,9 @@
     <% }); %>
 
     </div>
-
-    </div>
   </div>
-
+</div>
 <div class="margin-top"></div>
-
 </main>
 </body>
 </html>

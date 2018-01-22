@@ -10,7 +10,7 @@ body {
   min-height: 100vh;
   background-color: #FBF2EF;
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 main {
@@ -145,7 +145,7 @@ blockquote {
 #part-3, 
 #part-4 {
   padding-top: 7%;
-  padding-bottom: 15%;
+  padding-bottom: 10%;
 }
 
 #part-4bg {
@@ -163,11 +163,10 @@ blockquote {
   font-size: 1.4rem;
 }
 
-/* .ui.card > .image > img,
-.ui.cards > .card > .image > img {
-  height: 35%;
-  width: auto;
-} */
+.pickMeUp {
+  color: rgb(152, 10, 213);
+  font-size: 1.3rem;
+}
 
 .btns {
   text-align: center;
@@ -201,10 +200,6 @@ blockquote {
   font-size: 1.1em;
 }
 
-#form {
-  min-width: 310px;
-  width: 450px;
-}
 
 #form.ui.form input[type=text],  
 #form.ui.form input[type=password] {
@@ -242,9 +237,11 @@ label {
 
 footer {
   text-align: center;
-  padding: 20px;
-  height: 100px;
-  background: #ff9999;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 120px;
+  background: #E5DBD5;
+  border-top: 3px solid #e9baa8;
 }
 
 /* responsive styles for smaller devices */
