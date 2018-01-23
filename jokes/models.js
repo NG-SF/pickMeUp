@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),
-      bcrypt = require('bcryptjs'),
       moment = require('moment');
 
 mongoose.Promise = global.Promise;
@@ -18,6 +17,5 @@ jokeSchema.virtual('publishDate').get(function() {
 });
 
 const Joke = mongoose.model('jokes', jokeSchema);
-
 
 module.exports = { Joke };

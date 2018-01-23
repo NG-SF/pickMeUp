@@ -1,12 +1,10 @@
 global.DATABASE_URL = 'mongodb://localhost/test-users';
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-
-const {app, runServer, closeServer} = require('../server');
-const {User} = require('../users/models');
-
-const expect = chai.expect;
-const should = chai.should();
+const chai = require('chai'),
+      chaiHttp = require('chai-http'),
+      {app, runServer, closeServer} = require('../server'),
+      {User} = require('../users/models'),
+      expect = chai.expect,
+      should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -55,11 +53,11 @@ describe('CREATE USER Route', function() {
           });
       });
 
-      it('Should reject users with missing password', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+  it('Should reject users with missing password', function() {
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username,
             firstName,
             lastName
@@ -75,12 +73,11 @@ describe('CREATE USER Route', function() {
           });
       });
 
-
-it('Should reject users with empty username', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+  it('Should reject users with empty username', function() {
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username: '',
             password,
             firstName,
@@ -99,11 +96,11 @@ it('Should reject users with empty username', function() {
           });
       });
 
-it('Should reject users with password less than 5 characters', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+  it('Should reject users with password less than 5 characters', function() {
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username,
             password: '123',
             firstName,
@@ -119,11 +116,11 @@ it('Should reject users with password less than 5 characters', function() {
           });
       });
 
-it('Should reject users with password greater than 15 characters', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+  it('Should reject users with password greater than 15 characters', function() {
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username,
             password: 'aaaaaaaaaaaaaaaaa',
             firstName,
@@ -138,19 +135,20 @@ it('Should reject users with password greater than 15 characters', function() {
             expect(res.body.reason).to.equal('ValidationError');
           });
       });
-it('Should reject users with duplicate username', function() {
+
+  it('Should reject users with duplicate username', function() {
         // Create an initial user
-        return User.create({
+      return User.create({
           username,
           password,
           firstName,
           lastName
         })
-          .then(function () {
-            // Try to create a second user with the same username 
-            return chai.request(app)
-            .post('/users/create')
-            .send({
+        .then(function () {
+          // Try to create a second user with the same username 
+          return chai.request(app)
+          .post('/users/create')
+          .send({
               username,
               password,
               firstName,
@@ -166,15 +164,14 @@ it('Should reject users with duplicate username', function() {
             expect(res.body.reason).to.equal('ValidationError');
           });
       });
-
 });  // end describe users/create/route
 
-  describe('LOGIN USER Route', function() {
-      it('Should reject users with missing username', function() {
-        return chai
-          .request(app)
-          .post('/users/login')
-          .send({
+describe('LOGIN USER Route', function() {
+  it('Should reject users with missing username', function() {
+      return chai
+        .request(app)
+        .post('/users/login')
+        .send({
             password,
             firstName,
             lastName
@@ -182,15 +179,14 @@ it('Should reject users with duplicate username', function() {
           .catch(function(err)  {
             const res = err.response;
             expect(res).to.have.status(403);
-          });
-          
+          });         
       });
 
-      it('Should reject users with missing password', function() {
-        return chai
-          .request(app)
-          .post('/users/login')
-          .send({
+  it('Should reject users with missing password', function() {
+      return chai
+        .request(app)
+        .post('/users/login')
+        .send({
             username,
             firstName,
             lastName
@@ -205,11 +201,11 @@ it('Should reject users with duplicate username', function() {
           });
       });  
 
-it('Should reject users with non-trimmed username', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+  it('Should reject users with non-trimmed username', function() {
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username: ` ${username} `,
             password,
             firstName,
@@ -226,10 +222,10 @@ it('Should reject users with non-trimmed username', function() {
       });
 
   it('Should reject users with non-trimmed password', function() {
-        return chai
-          .request(app)
-          .post('/users/create')
-          .send({
+      return chai
+        .request(app)
+        .post('/users/create')
+        .send({
             username,
             password: ` ${password} `,
             firstName,
@@ -245,8 +241,8 @@ it('Should reject users with non-trimmed username', function() {
           });
       });
 
-it('Should reject users with incorrect password', function() {
-     let count;   
+  it('Should reject users with incorrect password', function() {
+    let count;   
     return User.create({
       username: 'apollo',
       password: 'battlestar888',
@@ -272,12 +268,7 @@ it('Should reject users with incorrect password', function() {
           .catch(function(err) {
             const res = err.response;
             expect(res).to.have.status(422);
-            // expect(res.body.message).to.equal(
-            //   'Internal server error'
-            // );
           });
       });
-
   });
-
 });

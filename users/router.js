@@ -8,49 +8,25 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 // Post to register a new user
 router.post('/create',(req, res) => {
+  
   // check if username and password is defined
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
     if (missingField) {
-
       return res.status(422).json({
         code: 422,
         reason: 'ValidationError',
         message: 'Missing field',
     });
   }
-//check that all the fields are strings
-//   const stringFields = ['username', 'password', 'firstName', 'lastName'];
-//   const nonStringField = stringFields.find(
-//     field => field in req.body && typeof req.body[field] !== 'string'
-//   );
 
-// console.log('nonStringField', nonStringField);
-// console.log('req.Body====', req.body);
-
-//   if (nonStringField) {
-//     return res.status(422).json({
-//       code: 422,
-//       reason: 'ValidationError',
-//       message: 'Incorrect field type: expected string',
-//       location: nonStringField
-//     });
-//   }
-  // If the username and password aren't trimmed we give an error.  Users might
-  // expect that these will work without trimming (i.e. they want the password
-  // "foobar ", including the space at the end).  We need to reject such values
-  // explicitly so the users know what's happening, rather than silently
-  // trimming them and expecting the user to understand.
-  // We'll silently trim the other fields, because they aren't credentials used
-  // to log in, so it's less of a problem.
+  // If the username and password aren't trimmed we give an error
   const explicityTrimmedFields = ['username', 'password'];
   const nonTrimmedField = explicityTrimmedFields.find(
     field => req.body[field].trim() !== req.body[field]
   );
 
   if (nonTrimmedField) {
-    // let error = 'Cannot start or end with whitespace';
-    // return res.status(422).render('errorMessage', { error: error });
   return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
@@ -83,15 +59,12 @@ router.post('/create',(req, res) => {
   );
 
   if (tooSmallField || tooLargeField) {
-  //  let error = "Password should be between 5 and 15 characters.";
-  //   return res.status(422).render('errorMessage', { error: error });
-return res.status(422).json({
+    return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
       message: tooSmallField ? `Must be at least ${sizedFields[tooSmallField].min} characters long` : `Must be at most ${sizedFields[tooLargeField].max} characters long`,
       location: tooSmallField || tooLargeField
     });
-
   }
 
   let {username, password, firstName = '', lastName = ''} = req.body;
@@ -104,16 +77,12 @@ return res.status(422).json({
     .count()
     .then(count => {
       if (count > 0) {
-        // There is an existing user with the same username
-      // const message = "Username already taken. Sorry :(";
-      // return res.render('errorMessage', {error: message});
-return Promise.reject({
+        return Promise.reject({
           code: 422,
           reason: 'ValidationError',
           message: 'Username already taken',
           location: 'username'
         });
-
       }
       // If there is no existing user, hash the password
       return User.hashPassword(password);
@@ -140,27 +109,22 @@ return Promise.reject({
     });
 });
 
-
-
 // Post to register a new user
 router.post('/login',(req, res) => {
   
   // check if username and password present
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
-    if (missingField) {
-      
+    if (missingField) { 
       return res.status(403).json({code: 403, message: "Username and password are both required."});
   }
 
- const explicityTrimmedFields = ['username', 'password'];
-  const nonTrimmedField = explicityTrimmedFields.find(
-    field => req.body[field].trim() !== req.body[field]
-  );
+const explicityTrimmedFields = ['username', 'password'];
+const nonTrimmedField = explicityTrimmedFields.find(
+  field => req.body[field].trim() !== req.body[field]);
 
-  if (nonTrimmedField) {
-    let error = 'Cannot start or end with whitespace';
-    // return res.status(422).render('errorMessage', { error: error });
+if (nonTrimmedField) {
+  let error = 'Cannot start or end with whitespace';
   return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
@@ -189,6 +153,5 @@ router.post('/login',(req, res) => {
       res.status(500).json({code: 500, message: 'Internal server error'});
     });
 });
-
 
 module.exports = {router};

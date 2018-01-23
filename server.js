@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express'),
-  mongoose = require('mongoose'),
-  morgan = require('morgan'),
-  passport = require('passport'),
-  { router: jokesRouter} = require('./jokes'),
-  { PORT, DATABASE_URL } = require('./config'),
-  { router: usersRouter } = require('./users'),
-  app = express();
+      mongoose = require('mongoose'),
+      morgan = require('morgan'),
+      passport = require('passport'),
+      { router: jokesRouter} = require('./jokes'),
+      { PORT, DATABASE_URL } = require('./config'),
+      { router: usersRouter } = require('./users'),
+      app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -16,7 +16,7 @@ app.use(morgan('common'));
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
   if (req.method === 'OPTIONS') {
     return res.send(204);
   }
@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 
 
 app.use('*', (req, res) => {
-  let message = 'Not Found';
+  let message = 'Page Not Found';
   return res.status(404).render('errorMessage', { error: message });
 });
 
@@ -70,8 +70,8 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
+// if server.js is called directly, this block
+// runs. Export runServer command for testing
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 }

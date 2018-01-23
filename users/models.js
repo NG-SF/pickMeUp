@@ -17,7 +17,6 @@ const UserSchema = mongoose.Schema({
   lastName: {type: String, default: ''}
 });
 
-
 UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);
 };
