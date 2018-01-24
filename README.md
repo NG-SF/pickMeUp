@@ -40,8 +40,8 @@
 
 ## Screenshots 📸
 
-![alt text](/screenshots/home.png) 
-![alt text](/screenshots/userPage.png)
-![alt text](/screenshots/signUp.png)
-![alt text](/screenshots/logIn.png)
+![screenshot of homepage](/screenshots/home.png) 
+![screenshot of user page](/screenshots/userPage.png)
+![screenshot of sign up page](/screenshots/signUp.png)
+![screenshot of login page](/screenshots/logIn.png)
 

@@ -23,10 +23,23 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.use('/jokes', jokesRouter);
 app.use('/users', usersRouter);
 
+// Homepage Route
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
+// LogIn Route redirects to login page
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// SignUp Route redirects to sign-up page
+app.get('/signUp', (req, res) => {
+  res.render('signUp');
+});
 
 app.use('*', (req, res) => {
   let message = 'Page Not Found';

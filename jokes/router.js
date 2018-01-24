@@ -21,21 +21,6 @@ router.use(methodOverride('_method'));
 // generic error message
 let error = 'Sorry. Something went wrong on the server side.';
 
-// Homepage Route
-router.get('/', function(req, res) {
-  res.render('index');
-});
-
-// LogIn Route redirects to login page
-router.get('/login', (req, res) => {
-  res.render('login');
-});
-
-// SignUp Route redirects to sign-up page
-router.get('/signUp', (req, res) => {
-  res.render('signUp');
-});
-
 // NEW Route redirects to form to enter new joke
 router.get('/users/new/:id', (req, res) => {
   res.render('newJoke', {id: req.params.id});
