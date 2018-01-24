@@ -6,6 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: YOi/Ydep7SmbxpOQbC5R8JbmT7PG4+HkGji7qXyshrDPlKJCYqHmMmrFeeligc94ewCYtk/FVyjK+9+YkAYly+gqvtUqb8BMDrJAs6ZtlyZCAljajWyElX/F2i8Df8hpEqjDIyg4jz4+NmKxo4/1R3pL4yn6BFAb6BzmRakG9+cihDIejxoN4cYjZjSJgDVDYEWkxU9SL689sdLkdgR92KvbrgoWSk/uHqh2O7Kl+IblTNM4n6GHVE9Kn621KMkaIspWu4NPhkRCtLvQctmzoOntEM2IWBjyf7yqeLd/QzZPiDvDjdFaQ4otfne6XiNtUOyqCghXefI24ygOCuETy+jjqOdpe0XGin2oN/gsNGvE5R27O+0YPTc09o/s0+RO3ypnNZUtlsZ9qgNZwk2UGiv2X+d6zX8zR48fGZBajDd9vQHTMuR9kPweMeavpOGXp87He6c0PDxly7J8hLj4CD51SPNw2oKu6BGwtG4RKlKDRcPgOFpIYAH6k64mQmBmV8KH3TEeYXkDRWVmTquczwD1RqewNJD9RxJXpCg90kaN4B0Boyqc46moLNkPDf0T1/95YIuiRoFB5/ZKlqA+KK0PlxvcK19usbN2x/77ueQYI4LaDI82k+LPnuoBf9jBQNYI37464NiTaJChIVdPiMbU0nsnXfRoY5+rX0XjVrI=
-  app: secret-journey-85034
+  app: pickme-up
   on:
     repo: NG-SF/pickMeUp
