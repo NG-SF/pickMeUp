@@ -39,12 +39,9 @@
 
 
 ## Screenshots 📸
-<h3>Home page</h3>
+
 ![screenshot of homepage](/screenshots/home.png) 
-<h3>User page</h3>
 ![screenshot of user page](/screenshots/userPage.png)
-<h3>Sign up page</h3>
 ![screenshot of sign up page](/screenshots/signUp.png)
-<h3>Log in page</h3>
 ![screenshot of login page](/screenshots/logIn.png)
 
