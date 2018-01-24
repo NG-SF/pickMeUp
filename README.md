@@ -1,6 +1,6 @@
 <h1> PickMeUp </h1> 
 
-<p><a href="https://pickme-up.herokuapp.com/jokes/" target="_blank" rel="noopener">PickMeUP</a> is a responsive full-stack app that allows users to create collection of their favorite jokes.</p>
+<p><a href="https://pickme-up.herokuapp.com/" target="_blank" rel="noopener">PickMeUp</a> is a responsive full-stack app that allows users to create collection of their favorite jokes.</p>
 
 ## Technology Used  🛠
 <h3>Front End</h3>
@@ -39,9 +39,12 @@
 
 
 ## Screenshots 📸
-
+<h3>Home page</h3>
 ![screenshot of homepage](/screenshots/home.png) 
+<h3>User page</h3>
 ![screenshot of user page](/screenshots/userPage.png)
+<h3>Sign up page</h3>
 ![screenshot of sign up page](/screenshots/signUp.png)
+<h3>Log in page</h3>
 ![screenshot of login page](/screenshots/logIn.png)
 
