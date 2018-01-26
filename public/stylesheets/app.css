@@ -350,6 +350,10 @@ blockquote {
   padding-right: 20px;
 }
 
+.form-responsive {
+  padding-top: 0;
+}
+
   #banner {
     background-color: #F1D3C7;
     background-image: none;
@@ -359,7 +363,7 @@ blockquote {
   line-height: 2.1rem;
 }
   #banner h2,
-   #part-4 a {
+   #part-3 a {
     font-size: 1.2rem;
   }
 }
