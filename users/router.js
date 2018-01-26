@@ -42,8 +42,6 @@ router.post('/create',(req, res) => {
     },
     password: {
       min: 5,
-      // bcrypt truncates after 72 characters, so let's not give the illusion
-      // of security by storing extra (unused) info
       max: 15
     }
   };
@@ -141,7 +139,7 @@ if (nonTrimmedField) {
         return res.redirect('/jokes/users/' + user._id);
       } 
       else {
-        return res.redirect('/jokes/login');
+        return res.redirect('/login');
       }
     })
     .catch(err => {

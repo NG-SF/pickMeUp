@@ -48,6 +48,8 @@ app.use('*', (req, res) => {
 
 let server;
 
+// this function starts the server.
+// it is also used in integration tests.
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {

@@ -142,8 +142,7 @@ i.icon {
   font-size: 1.3rem;
 }
 
-/* Main content */
-
+/* Homepage styles */
 blockquote {
   font-size: 1.3rem;
   font-weight: bold;
@@ -185,22 +184,18 @@ blockquote {
 }
 
 .pickMeUp {
-  color: rgb(152, 10, 213);
-  font-size: 1.3rem;
-}
-
-.btns {
-  text-align: center;
-}
-
-.ui.button {
-  margin-top: 11px;
+  color:#592fc2;
+  font-size: 1.4rem;
 }
 
 .ui.raised.segment {
   padding: 20px;
 }
 
+p > a,
+.date {
+  color: rgb(98, 8, 223);
+}
 /* Forms styles */
 .ui.form {
   width: 28%;
@@ -220,7 +215,6 @@ blockquote {
   margin-left: 4%;
   font-size: 1.1em;
 }
-
 
 #form.ui.form input[type=text],  
 #form.ui.form input[type=password] {
@@ -252,6 +246,14 @@ label {
 .hiUser {
   color: rgb(152, 10, 213);
   font-size: 2.3rem;
+}
+
+.btns {
+  text-align: center;
+}
+
+.ui.button {
+  margin-top: 11px;
 }
 
 /* Footer styles */
