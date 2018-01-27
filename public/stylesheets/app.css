@@ -87,17 +87,17 @@ li a.active {
 }
 
 /* Carousel styles */
-.slider {
-  max-width: 800px;
-  max-height: 550px;
-  margin: 20px auto;
+.slider-container {
+  max-width: 900px;
+  max-height: auto;
+  margin: 0 auto;
 }
 
 .slider img {
   height: 55%;
   width: auto;
   display: block;
-  margin: 20px auto;
+  margin: 30% auto;
 }
 
 .slick-prev:before,

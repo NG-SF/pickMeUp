@@ -5,18 +5,14 @@ $(document).ready(function() {
     adaptiveHeight: true,
     arrows: true,
     mobileFirst: true,
-    dots: true,
-    responsive: [
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-  ]
+    dots: true
   });
+
+$(window).resize(function() {
+  $('.slider')[0].slick.refresh();
+});
+
+$(window).on('orientationchange', function() {
+  $('.slider').slick('resize');
+});
 });
