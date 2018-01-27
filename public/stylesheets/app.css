@@ -344,6 +344,7 @@ blockquote {
   width: auto;
   display: block;
   margin: 20px auto;
+  padding-bottom: 25px;
 }
 
 .slick-prev:before,
