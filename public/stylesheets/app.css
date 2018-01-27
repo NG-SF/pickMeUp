@@ -192,6 +192,10 @@ blockquote {
   padding: 20px;
 }
 
+#quote {
+  padding: 28px;
+}
+
 p > a,
 .date {
   color: rgb(98, 8, 223);
