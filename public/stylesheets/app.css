@@ -89,15 +89,20 @@ li a.active {
 /* Carousel styles */
 .slider-container {
   max-width: 900px;
-  max-height: auto;
+  padding: 30px;
   margin: 0 auto;
 }
 
+.slider {
+  height: 500px;
+}
+
 .slider img {
-  height: 55%;
+  height: 100%;
   width: auto;
   display: block;
-  margin: 30% auto;
+  /* margin: 30% auto; */
+  margin: 0 auto;
 }
 
 .slick-prev:before,
@@ -105,13 +110,13 @@ li a.active {
   color: black !important;
 }
 
-.slick-prev {
+/* .slick-prev {
   padding-left: 25px;
 }
 
 .slick-next {
   padding-right: 25px;
-}
+} */
 
 /* Across pages styles */
 i.icon {
@@ -274,25 +279,32 @@ footer {
 /* responsive styles for smaller devices */
 @media only screen and (max-width: 770px) {
   .slider {
-  max-width: 700px;
+  max-width: 80%;
   max-height: 450px;
   margin: 20px auto;
 }
 
+/* .slider {
+  height: 500px;
+} */
+
 .slider img {
-  height: 65%;
+  height: 95%;
   width: auto;
   display: block;
   margin: 30px auto;
 }
 
-.slick-prev {
+.slider-container {
+  padding: 0;
+}
+/* .slick-prev {
   padding-left: 50px;
 }
 
 .slick-next {
   padding-right: 90px;
-}
+} */
 
   #banner h1 {
   font-size: 2rem;
@@ -335,13 +347,17 @@ blockquote {
 @media only screen and (max-width: 425px) {
 .slider {
   max-width: 315px;
-  max-height: 280px;
+  max-height: 250px;
   margin: 10px auto;
 }
 
+.slider-container {
+  padding: 0;
+}
+
 .slider img {
-  height: 50%;
-  width: auto;
+  /* height: 70%; */
+  /* width: auto; */
   display: block;
   margin: 20px auto;
   padding-bottom: 25px;
