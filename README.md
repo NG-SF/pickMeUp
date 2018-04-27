@@ -1,5 +1,7 @@
 <h1> PickMeUp </h1> 
 
+[![Travis](https://travis-ci.org/NG-SF/pickMeUp.svg?branch=master)](https://travis-ci.org/NG-SF/pickMeUp)
+
 <p><a href="https://pickme-up.herokuapp.com/" target="_blank" rel="noopener">PickMeUp</a> is a responsive full-stack app that allows users to create collection of their favorite jokes.</p>
 
 ## Technology Used  🛠
