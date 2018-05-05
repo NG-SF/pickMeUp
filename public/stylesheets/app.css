@@ -72,7 +72,7 @@ li a.active {
 /* Banner */
 #banner {
   padding: 12%;
-  background: url('/images/banner-bg.jpeg') no-repeat center;
+  background: url('/images/banner-bg.jpeg') no-repeat center center fixed;
   text-align: center;
   margin-top: -3%;
 }
@@ -240,8 +240,18 @@ label {
 
 /* User page style */
  #user-bg {
-   background: url('/images/banner-bg.jpeg') no-repeat center;
+   background: url('/images/user-bg2.jpg') no-repeat center center;
+   opacity: .9;
  }
+
+#welcomeUser {
+  background: #E5DBD5;
+  opacity: .9;
+  width: 300px;
+  padding: 15px;
+  border-radius: 3px 25px 3px;
+}
+
 
 .hiUser {
   color: rgb(152, 10, 213);
@@ -262,9 +272,20 @@ footer {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
-  height: 120px;
+  height: 160px;
   background: #E5DBD5;
   border-top: 3px solid #e9baa8;
+}
+
+footer h2 {
+  font-family: 'Arima Madurai', cursive;
+  font-size: 1.2em;
+  margin: 0 0 0 10px;
+}
+
+footer a {
+  display: block;
+  margin-top: 20px;
 }
 
 /* responsive styles for smaller devices */
@@ -367,4 +388,9 @@ blockquote {
    #part-3 a {
     font-size: 1.2rem;
   }
+
+  #welcomeUser {
+    background: none;
+}
+
 }
