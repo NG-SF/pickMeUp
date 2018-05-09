@@ -17,7 +17,7 @@
 	<ul class="nav-list">
       <li><a class="active" href="/" disabled>PickMeUp</a></li>
 			<li><a href="/">Home</a></li>
-			<li><a href="/#part-2">About</a></li>
+			<li><a href="/jokes/users/<%= user._id %>">Dashboard</a></li>
       <li class="right"><a href="/">Log Out</a></li>
 		</ul>
 	</nav>
@@ -63,7 +63,7 @@
               <p class="joke-content"><%= joke.content %></p>
             </div>
             <div class="extra content btns">
-              <a class="ui purple labeled basic icon button" role="button" href="/jokes/users/edit/<%= joke._id %>"><i class="edit icon"></i>Edit</a>
+              <a class="ui purple labeled basic icon button" role="button" href="/jokes/users/edit/<%= joke._id %>/<%= user._id %>"><i class="edit icon"></i>Edit</a>
               <form class="btn-delete" action="/jokes/users/<%= joke._id %>?_method=DELETE" method="POST">
                 <button class="ui black labeled basic icon button"><i class="trash outline icon"></i>Delete</button>
               </form>

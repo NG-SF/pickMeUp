@@ -1,7 +1,29 @@
-<% include ./partials/header %>
+<html lang="en">
+  <head>
+    <title>PickMeUp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/smile.png">
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai|Roboto:400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+  </head>
+
+<body>
+  
+<nav role="navigation">
+	<ul class="nav-list">
+      <li><a class="active" href="/" disabled>PickMeUp</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/jokes/users/<%= userId %>">Dashboard</a></li> 
+      <li class="right"><a href="/">Log Out</a></li> 
+		</ul>
+	</nav>
+  
+  <main>
 
 <div class="ui main text container segment">
-  <h1 class="ui huge header">Edit <%= joke.title %></h1>
+  <h1 class="ui huge purple centered header">Edit  &#10002;  <%= joke.title %></h1>
   <form class="ui form" id="form" action="/jokes/users/<%= joke._id %>?_method=PUT" method="POST">
     
     <div class="field">
@@ -20,7 +42,7 @@
     </div>
     
     <button class="ui purple basic big button" type="submit">Submit</button>
-
+    <a class="ui red basic big button" href="/jokes/users/<%= userId %>">Cancel</a>
   </form>
 </div>
 

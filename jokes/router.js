@@ -70,9 +70,10 @@ router.post('/users/:id', (req, res) => {
 });
 
 // EDIT Route redirects to edit joke page
-router.get('/users/edit/:id', (req, res) => {
+router.get('/users/edit/:id/:userId', (req, res) => {
+  let id = req.params.userId;
   Joke.findById(req.params.id)
-    .then(joke => res.render('edit', { joke: joke }))
+    .then(joke => res.render('edit', { joke: joke, userId: id}))
     .catch(err => {
       console.log(err);
       res.status(500).render('errorMessage', { error: error });
