@@ -250,7 +250,7 @@ describe('LOGIN USER Route', function() {
       lastName
       })
       .then(function(user) {
-          return User.find({username: 'apollo'}).count();
+          return User.find({username: 'apollo'}).countDocuments();
       })
       .then(function(_count) {
         count = _count;
