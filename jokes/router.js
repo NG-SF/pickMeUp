@@ -28,12 +28,26 @@ router.get('/users/new/:id', (req, res) => {
 
 //SHOW Route
 router.get('/users/:id', (req, res) => {
+  const perPage = 6;
+  let pageQuery = parseInt(req.query.page);
+  let pageNumber = pageQuery ? pageQuery : 1;
   User.findById(req.params.id)
   .then(user => {
 
   Joke.find({userId: user._id})
+    .skip((perPage * pageNumber) - perPage)
+    .limit(perPage)
     .then(jokes => {
-      res.render('userPage', { jokes: jokes, user: user });
+      Joke.find({userId: user._id})
+      .count()
+      .then(count => {
+          res.render('userPage', { 
+            jokes: jokes, 
+            user: user,
+            current: pageNumber,
+            pages: Math.ceil(count / perPage) 
+          });
+      });
     });  
   }).catch(err => {
       console.error(err);
@@ -55,13 +69,11 @@ router.post('/users/:id', (req, res) => {
 
   Joke.create(newJoke)
   .then(joke => {
-    User.findById(req.params.id)
-    .then(user => {
-      Joke.find({userId: user._id})
-      .then(jokes => {
-        res.render('userPage', { jokes: jokes, user: user });
-        }); 
-      });
+
+    Joke.find({userId: newJoke.userId})
+    .then(jokes => {
+        res.redirect('/jokes/users/' + newJoke.userId);
+      }); 
     }).catch(err => {
       console.error(err);
       let error = "Sorry, cannot find jokes";

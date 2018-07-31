@@ -46,13 +46,29 @@
     <div id="welcomeUser">
       <h1 class="ui huge teal header">Welcome! <span class="hiUser"> <%= (user.username)[0].toUpperCase() + (user.username).substring(1) %> </span> </h1>
       <h2 class="ui large header"> Nice to see you!</h2>
-      <p class="text">Start creating your collection.</p>
+      <p class="text">Start adding more funny images or stories to your collection.</p>
         
         <form action="/jokes/users/new/<%= user._id %>" method="GET">
             <button class="ui purple labeled icon large button"><i class="write icon"></i>Add new joke</button>
         </form>   
     </div>
    </div>
+
+    <div class="ui secondary segment">
+
+    <% if (pages && pages > 0){ %>
+    <div class="ui pagination menu" id="pagination">     
+        <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% for(; i <= (Number(current) + 4) && i <= pages; i++){ %>
+            <% if(i === current){ %>
+             <a class="active item"><%= i %></a>
+             <% } else { %>
+             <a class="active item" href="/jokes/users/<%= user._id %>?page=<%= i %>"><%= i %></a>
+            <% } %>
+        <% } %>
+    </div>
+    <% } %>
+  </div>
 
     <div class="ui two stackable cards">
 
@@ -90,6 +106,7 @@
 
     </div>
   </div>
+  
 </div>
 
 <div class="margin-top"></div>
