@@ -11,6 +11,7 @@
   <li>CSS3</li>
   <li>JavaScript</li>
   <li><a href="https://semantic-ui.com/" target="_blank" rel="noopener"> Semantic UI</a></li>
+  <li><a href="http://ejs.co/" target="_blank" rel="noopener"><%= EJS %></a></li>
 </ul>
 <h3>Back End</h3>
 <ul>
@@ -18,15 +19,14 @@
   <li><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a></li>
   <li><a href="http://mongoosejs.com/" target="_blank" rel="noopener">Mongoose</a></li>
   <li><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB</a></li>
-  <li><a href="http://ejs.co/" target="_blank" rel="noopener"><%= EJS %></a></li>
 </ul>
 <h3>Testing and Deployment</h3>
 <ul>
   <li><a href="https://mochajs.org/" target="_blank" rel="noopener">Mocha</a>- testing framework</li>
   <li><a href="http://chaijs.com/" target="_blank" rel="noopener">Chai</a>- assertion library</li>
-  <li>Continuous integration and deployment with <a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a></li>
+  <li><a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a> continuous integration and deployment</li>
   <li><a href="https://www.heroku.com/" target="_blank" rel="noopener"> Heroku</a>- cloud PaaS</li>
-  <li><a href="https://mlab.com/" target="_blank" rel="noopener">mLab</a>- cloud database service</li>
+  <li><a href="https://mlab.com/" target="_blank" rel="noopener">mLab</a> cloud database service</li>
 </ul>
 
 <h3>Responsive</h3>
@@ -43,7 +43,7 @@
 ## Screenshots 📸
 
 ![screenshot of homepage](/screenshots/home.png) 
+![screenshot of homepage](/screenshots/home2.png) 
 ![screenshot of user page](/screenshots/userPage.png)
 ![screenshot of sign up page](/screenshots/signUp.png)
 ![screenshot of login page](/screenshots/logIn.png)
-
