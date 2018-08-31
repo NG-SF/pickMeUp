@@ -1,10 +1,9 @@
-global.DATABASE_URL = 'mongodb://localhost/test-users';
 const chai = require('chai'),
       chaiHttp = require('chai-http'),
       {app, runServer, closeServer} = require('../server'),
       {User} = require('../users/models'),
-      expect = chai.expect,
-      should = chai.should();
+      {TEST_DATABASE_URL, PORT} = require('../config'),
+      expect = chai.expect;
 
 chai.use(chaiHttp);
 
@@ -13,13 +12,9 @@ describe('User authorization routes', function() {
   const password = 'examplePass';
   const firstName = 'Example';
   const lastName = 'User';
-  const usernameB = 'exampleUserB';
-  const passwordB = 'examplePassB';
-  const firstNameB = 'ExampleB';
-  const lastNameB = 'UserB';
 
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL, PORT);
   });
 
   after(function() {
